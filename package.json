@@ -1,0 +1,34 @@
+{
+  "devDependencies": {
+    "concurrently": "^7.2.2",
+    "nodemon": "^2.0.19"
+  },
+  "name": "babelfish",
+  "description": "A live instant messaging app that translates user messages into the other user's preferred language.",
+  "version": "1.0.0",
+  "main": "server/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/server.js",
+    "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
+    "seed": "cd server && npm run seed",
+    "build": "cd client && npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jrj-sys/BabelFish.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jrj-sys/BabelFish/issues"
+  },
+  "homepage": "https://github.com/jrj-sys/BabelFish#readme",
+  "dependencies": {
+    "apollo-server-express": "^3.9.0",
+    "express": "^4.18.1",
+    "graphql": "^16.5.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.4.3"
+  }
+}
