@@ -29,6 +29,11 @@ const userSchema = new Schema(
       // must match format en-US or en
       // match: [[/^[a-z]{2}-[A-Z]{2}$/, 'Must match a valid language code.']]
     },
+    profilePic: {
+      type: String,
+      // default pic for no picture associated
+      default: 'https://icon-library.com/images/default-user-icon/default-user-icon-13.jpg'
+    },
     contacts: [
       {
         type: Schema.Types.ObjectId,
