@@ -8,15 +8,16 @@ const typeDefs = gql`
     username: String
     email: String
     password: String
+    preferredLang: String
     contacts: [User]
   }
 
   type Query {
-    users: User
+    users: [User]
   }
 
   type Mutation {
-    addUser(username: String!, email: String!, password: String!): User 
+    addUser(username: String!, email: String!, password: String!, preferredLang: String!): User 
   }
 `;
 
