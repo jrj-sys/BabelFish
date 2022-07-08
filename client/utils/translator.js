@@ -12,7 +12,7 @@ const translate = new Translate({
   projectId: CREDENTIALS.projectId});
 
 
-async function translate() {
+async function translator() {
   // text will be equal to user input
   const text = 'redação';
 
@@ -26,6 +26,6 @@ async function translate() {
 }
 
 // call the translator on load OR export
-// translator();
+translator();
 
-module.exports = translate;
+module.exports = translator;
