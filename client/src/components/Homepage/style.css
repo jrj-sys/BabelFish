@@ -1,0 +1,25 @@
+h2 {
+  text-align: center;
+}
+
+.conversation {
+  margin-bottom: 10px;
+}
+
+.convo-title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.convo-name {
+  position: absolute;
+  margin-left: 50px;
+}
+
+.convo-read {
+  margin-right: 6px;
+}
+
+.convo-message {
+  margin-left: 50px;
+}
