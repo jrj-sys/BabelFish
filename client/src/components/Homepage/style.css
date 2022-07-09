@@ -2,13 +2,14 @@ h2 {
   text-align: center;
 }
 
-.conversation {
-  margin-bottom: 10px;
+.convo-card {
+  margin: 10px 100px;
 }
 
 .convo-title {
   display: flex;
   justify-content: space-between;
+  margin: 3px;
 }
 
 .convo-name {
@@ -22,4 +23,6 @@ h2 {
 
 .convo-message {
   margin-left: 50px;
+  max-width: 300px;
+  max-height: 30px;
 }
