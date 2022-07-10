@@ -9,22 +9,19 @@ const typeDefs = gql`
     email: String
     password: String
     preferredLang: String
+    token: String
     contacts: [User]
+    conversations: [Conversation]
   }
 
   type Conversation {
     _id: ID
-    members: [Members]
+    members: [User]
+    messages: [Message]
   }
-
-  type Members {
-    receiverId: String,
-    senderId: String
-  }
-
+  
   type Message {
     _id: ID
-    conversationId: String
     sender: String
     text: String
   }
@@ -37,7 +34,7 @@ const typeDefs = gql`
 
   type Mutation {
     addUser(username: String!, email: String!, password: String!, preferredLang: String!): User 
-    addConversation(members: String!): Conversation
+    addConversation(receiver: ID!, sender: ID!): Conversation
     addMessage(conversationId: String!, sender: String!, text: String!): Message
   }
 `;
