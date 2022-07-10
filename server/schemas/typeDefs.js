@@ -14,7 +14,12 @@ const typeDefs = gql`
 
   type Conversation {
     _id: ID
-    members: [User]
+    members: [Members]
+  }
+
+  type Members {
+    receiverId: String,
+    senderId: String
   }
 
   type Message {
