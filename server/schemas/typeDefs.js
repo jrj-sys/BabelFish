@@ -15,11 +15,11 @@ const typeDefs = gql`
   type Conversation {
     _id: ID
     members: [User]
+    messages: [Message]
   }
 
   type Message {
     _id: ID
-    conversationId: String
     sender: String
     text: String
   }
@@ -32,7 +32,7 @@ const typeDefs = gql`
 
   type Mutation {
     addUser(username: String!, email: String!, password: String!, preferredLang: String!): User 
-    addConversation(members: String!): Conversation
+    addConversation(receiverId: String!, senderId: String!): Conversation
     addMessage(conversationId: String!, sender: String!, text: String!): Message
   }
 `;

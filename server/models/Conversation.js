@@ -2,10 +2,18 @@ const { Schema, model } = require('mongoose');
 
 const ConversationSchema = new Schema(
   {
-    members: {
-      type: Array,
-      required: true
-    },
+    members: [
+      {
+        type: String,
+        ref: 'User'
+      }
+    ],
+    messages: [
+      {
+        type: String,
+        ref: 'Message'
+      }
+    ]
   },
   {
     timestamps: true,
