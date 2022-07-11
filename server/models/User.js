@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+const bcrypt = require('bcrypt');
 
 const userSchema = new Schema(
   {
@@ -56,6 +57,18 @@ const userSchema = new Schema(
     }
   }
 );
+
+// password middleware
+userSchema.pre('save', async function(next) {
+  if (this.isNew || this.isModified('password')) {
+    const saltRounds = 10;
+    this.password = await bcrypt.hash(this.password, saltRounds);
+  }
+})
+
+userSchema.methods.isCorrectPassword = async function(pw) {
+  return bcrypt.compare(pw, this.password);
+}
 
 // virtual for contact list
 userSchema.virtual('contactCount').get(function () {
