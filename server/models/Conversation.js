@@ -1,13 +1,16 @@
 const { Schema, model } = require('mongoose');
+const { User } = require('./User')
 
 const ConversationSchema = new Schema(
   {
-    members: [
-      {
-        type: String,
-        ref: 'User'
-      }
-    ],
+    hostId: {
+      type: String,
+      ref: 'User'
+    },
+    guestId: {
+      type: String,
+      ref: 'User'
+    },
     messages: [
       {
         type: String,

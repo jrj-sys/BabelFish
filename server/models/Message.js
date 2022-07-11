@@ -1,11 +1,19 @@
 const { Schema, model } = require('mongoose');
+const { Conversation } = require('./Conversation')
+const { User } = require('./User')
+
 
 const MessageSchema = new Schema(
   {
-    sender: {
-      type: String
+    conversationId: {
+      type: String,
+      ref: 'Conversation'
     },
-    text: {
+    senderId: {
+      type: String,
+      ref: 'User'
+    },
+    messageText: {
       type: String
     }
   },

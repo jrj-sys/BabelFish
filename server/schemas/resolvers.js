@@ -18,11 +18,12 @@ const resolvers = {
     },
     // get all users
     users: async () => {
-      return User.find({});
+      return User.find({})
+        .populate('contacts')
     },
     // get all convos
     conversations: async () => {
-      return Conversation.find({});
+      return Conversation.find({})
     },
     // get all messages
     messages: async () => {
@@ -55,17 +56,12 @@ const resolvers = {
 
       return { token, user }
     },
-    addConversation: async (parent, { members, receiver, sender }, context) => {
-
-      //needs to be edited to get the receiverId
-
-      const conversation = await Conversation.create(
-        { _id: context.user._id },
-        { $push: { members: [sender, receiver] } },
-        { new: true }
-      ).populate('members')
+    startConversation: async (parent, args, context) => {
+      if (context.user) {
+      const conversation = await Conversation.create(...args)
 
       return conversation
+      }
     },
     addMessage: async (parent, args) => {
       const message = await Message.create(args);

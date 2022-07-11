@@ -15,14 +15,16 @@ const typeDefs = gql`
 
   type Conversation {
     _id: ID
-    members: [User]
+    hostId: String
+    guestId: String
     messages: [Message]
   }
   
   type Message {
     _id: ID
-    sender: String
-    text: String
+    conversationId: String
+    senderId: String
+    messageText: String
   }
 
   type Auth {
@@ -41,7 +43,7 @@ const typeDefs = gql`
   type Mutation {
     login(email: String!, password: String!): Auth 
     addUser(username: String!, email: String!, password: String!, preferredLang: String!): Auth
-    addConversation(receiver: ID!, sender: ID!): Conversation
+    startConversation(hostId: String!, guestId: String!): Conversation
     addMessage(conversationId: String!, sender: String!, text: String!): Message
     addContact(contactId: ID!): User
   }
