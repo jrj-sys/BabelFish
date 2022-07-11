@@ -1,0 +1,48 @@
+.chat {
+}
+
+.chat-avatar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.img-avatar {
+  width: 100%;
+}
+
+.chat-messasge {
+  display: flex;
+}
+
+.chat-content {
+  margin: 10px 300px 0 300px;
+  padding: 10px;
+  border-radius: 20px;
+  background-color: lightblue;
+  color: white;
+}
+
+.chat-own-message {
+  display: flex;
+}
+
+.chat-own-content {
+  margin: 10px 300px 0 300px;
+  padding: 10px;
+  border-radius: 20px;
+  background-color: gray;
+  color: black;
+}
+
+.chat-time {
+  text-align: center;
+  margin-top: 0;
+}
+
+.chat-input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
