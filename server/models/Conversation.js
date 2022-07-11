@@ -1,5 +1,32 @@
 const { Schema, model } = require('mongoose');
-const { User } = require('./User')
+
+const MessageSchema = new Schema(
+  {
+    // set custom id to avoid confusion with parent comment _id
+    messageId: {
+      type: Schema.Types.ObjectId,
+      default: () => new Types.ObjectId()
+    },
+    messageBody: {
+      type: String,
+      required: true,
+      trim: true
+    },
+    writtenBy: {
+      type: String,
+      required: true
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now,
+    }
+  },
+  {
+    toJSON: {
+      getters: true
+    }
+  }
+)
 
 const ConversationSchema = new Schema(
   {
@@ -11,12 +38,7 @@ const ConversationSchema = new Schema(
       type: String,
       ref: 'User'
     },
-    messages: [
-      {
-        type: String,
-        ref: 'Message'
-      }
-    ]
+    messages: [MessageSchema]
   },
   {
     timestamps: true,

@@ -5,7 +5,7 @@ const { signToken } = require('../utils/auth');
 const resolvers = {
   Query: {
     // logged in User data
-    me: async (parent, args, context) => {
+    me: async (_, args, context) => {
       if (context.user) {
       const userData = await User.findOne({ _id: context.user._id })
         .select('')
@@ -21,6 +21,10 @@ const resolvers = {
       return User.find({})
         .populate('contacts')
     },
+    // get user by username
+    user: async (_, { username }) => {
+      return User.findOne({ username })
+    },
     // get all convos
     conversations: async () => {
       return Conversation.find({})
@@ -31,15 +35,16 @@ const resolvers = {
     }
   },
   Mutation: {
-    login: async (parent, { email, password }) => {
+    login: async (_, { email, password }) => {
       const user = await User.findOne({ email });
 
+      // if no user found, throw Error instead of ending server connection
       if (!user) {
         throw new AuthenticationError('Incorrect credentials.');
       }
 
       const correctPw = await user.isCorrectPassword(password);
-
+      // if pw incorrect, throw Error instead of ending server connection
       if (!correctPw) {
         throw new AuthenticationError('Incorrect credentials.');
       }
@@ -49,22 +54,21 @@ const resolvers = {
       return { token, user } 
     },
     // add a user
-    addUser: async (parent, args) => {
+    addUser: async (_, args) => {
       const user = await User.create(args);
       // sign jwt token on creation
       const token = signToken(user);
 
       return { token, user }
     },
-    startConversation: async (parent, args, context) => {
-      if (context.user) {
-      const conversation = await Conversation.create(...args)
+    startConversation: async (_, args, context) => {
+      const conversation = await Conversation.create( { args } );
 
-      return conversation
-      }
+      return conversation;
     },
-    addMessage: async (parent, args) => {
+    addMessage: async (_, args) => {
       const message = await Message.create(args);
+
       return message;
     }
   }
