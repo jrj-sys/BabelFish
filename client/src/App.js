@@ -9,7 +9,7 @@ function App() {
       <Homepage></Homepage>
     <div className="App">
       {" "}
-      {/* <LoginPage />{" "} */}
+      <LoginPage />{" "}
     </div>
     </div>
   );
