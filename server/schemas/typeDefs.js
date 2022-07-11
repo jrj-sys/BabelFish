@@ -9,7 +9,6 @@ const typeDefs = gql`
     email: String
     password: String
     preferredLang: String
-    token: String
     contacts: [User]
     conversations: [Conversation]
   }
@@ -32,6 +31,7 @@ const typeDefs = gql`
   }
 
   type Query {
+    me: User
     users: [User]
     user(username: String): User
     conversations: [Conversation]
@@ -40,7 +40,7 @@ const typeDefs = gql`
 
   type Mutation {
     login(email: String!, password: String!): Auth 
-    addUser(username: String!, email: String!, password: String!, preferredLang: String!): User
+    addUser(username: String!, email: String!, password: String!, preferredLang: String!): Auth
     addConversation(receiver: ID!, sender: ID!): Conversation
     addMessage(conversationId: String!, sender: String!, text: String!): Message
     addContact(contactId: ID!): User

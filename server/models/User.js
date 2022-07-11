@@ -30,9 +30,6 @@ const userSchema = new Schema(
       // must match format en-US or en
       // match: [[/^[a-z]{2}-[A-Z]{2}$/, 'Must match a valid language code.']]
     },
-    token: {
-      type: String
-    },
     profilePic: {
       type: String,
       // default pic for no picture associated
