@@ -1,6 +1,5 @@
 import React from "react";
 import Homepage from "./components/Homepage";
-import logo from "./logo.svg";
 import "./App.css";
 import LoginPage from "./components/login";
 
@@ -10,7 +9,7 @@ function App() {
       <Homepage></Homepage>
     <div className="App">
       {" "}
-      <LoginPage />{" "}
+      {/* <LoginPage />{" "} */}
     </div>
     </div>
   );

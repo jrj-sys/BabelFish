@@ -1,4 +1,5 @@
 import * as React from "react";
+import { Link } from "react-router-dom";
 import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
@@ -22,6 +23,7 @@ import TranslateIcon from "@mui/icons-material/Translate";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import SettingsIcon from "@mui/icons-material/Settings";
 import NewspaperIcon from "@mui/icons-material/Newspaper";
+import LogoutIcon from "@mui/icons-material/Logout";
 const drawerWidth = 240;
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
@@ -128,22 +130,26 @@ export default function PersistentDrawerLeft() {
             {
               icon: <HomeIcon />,
               text: "Home",
+              action: <Link to="/" />,
             },
             {
               icon: <ChatBubbleOutlineIcon />,
               text: "Start a Conversation",
+              action: <Link to="/chat" />,
             },
             {
               icon: <TranslateIcon />,
               text: "Make a Translation",
+              action: <Link to="/translate" />,
             },
             {
               icon: <NewspaperIcon />,
               text: "Developer News",
+              action: <Link to="/blog" />,
             },
-          ].map(({ text, icon }) => (
+          ].map(({ text, icon, action }) => (
             <ListItem disablePadding>
-              <ListItemButton>
+              <ListItemButton key={action}>
                 <ListItemIcon>{icon}</ListItemIcon>
                 <ListItemText primary={text} />
               </ListItemButton>
@@ -156,14 +162,21 @@ export default function PersistentDrawerLeft() {
             {
               text: "Account",
               icon: <AccountBoxIcon />,
+              action: <Link to="/dashboard" />,
             },
             {
               text: "Settings",
               icon: <SettingsIcon />,
+              action: <Link to="/settings" />,
             },
-          ].map(({ text, icon }) => (
+            {
+              text: "Logout",
+              icon: <LogoutIcon />,
+              action: <Link to="/" />,
+            },
+          ].map(({ text, icon, action }) => (
             <ListItem key={text} disablePadding>
-              <ListItemButton>
+              <ListItemButton key={action}>
                 <ListItemIcon>{icon}</ListItemIcon>
                 <ListItemText primary={text} />
               </ListItemButton>
