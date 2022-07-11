@@ -2,7 +2,7 @@ const { User, Conversation, Message } = require('../models');
 
 const resolvers = {
   Query: {
-    //show the loggin User
+    //show the login User
     // me: async (parent, args, context) => {
     //   const userData = await User.findOne({ _id: context.user._id })
     //     .select('')
@@ -26,6 +26,7 @@ const resolvers = {
     }
   },
   Mutation: {
+    login: {},
     // add a user
     addUser: async (parent, args) => {
       const user = await User.create(args);
