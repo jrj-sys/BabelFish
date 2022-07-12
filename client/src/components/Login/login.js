@@ -1,61 +1,129 @@
+import React, { useState } from 'react'
+import { useMutation } from '@apollo/client';
 import "./login.css";
+import { LOGIN, ADD_USER } from '../../utils/mutation'
+import Auth from '../../utils/auth'
+
 
 const LoginPage = () => {
+  const [formState, setFormState] = useState({ email: '', password: '' });
+  const [login, { error }] = useMutation(LOGIN);
+  const [addUser] = useMutation(ADD_USER);
+
+  // signup form
+  const handleSignupFormSubmit = async (event) => {
+    event.preventDefault();
+    const mutationResponse = await addUser({
+      variables: {
+        username: formState.username,
+        email: formState.email,
+        password: formState.password,
+      },
+    });
+    const token = mutationResponse.data.addUser.token;
+    Auth.login(token);
+  };
+
+  const handleUserChange = (event) => {
+    const { name, value } = event.target;
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
+
+  //login form
+  const handleLoginFormSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const mutationResponse = await login({
+        variables: { email: formState.email, password: formState.password },
+      });
+      const token = mutationResponse.data.login.token;
+      Auth.login(token);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const handleLoginChange = (event) => {
+    const { name, value } = event.target;
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
+
   return (
     <div className="page">
-    <div class="main">
-      <input type="checkbox" id="cam" aria-hidden="true" />
+      <div class="main">
+        <input
+          className="input-login"
+          type="checkbox"
+          id="cam"
+          aria-hidden="true"
+        />
 
-      <div class=" signup-form signup">
-        <form>
-          <label for="cam" aria-hidden="true">
-            Sign up
-          </label>
-          <input
-            type="text"
-            id="username-signup"
-            placeholder="User name"
-            required=""
-          />
-          <input
-            type="email"
-            id="email-signup"
-            placeholder="Email"
-            required=""
-          />
-          <input
-            type="password"
-            id="password-signup"
-            name="pswd"
-            placeholder="Password"
-            required=""
-          />
-          <button>Sign up</button>
-        </form>
-      </div>
+        <div class=" signup-form signup">
+          <form onSubmit={handleSignupFormSubmit}>
+            <label className="login-label" classfor="cam" aria-hidden="true">
+              Sign up
+            </label>
+            <input
+              className="input-login"
+              type="text"
+              id="username-signup"
+              placeholder="User name"
+              required=""
 
-      <div class=" login-form login">
-        <form>
-          <label for="cam" aria-hidden="true">
-            Login
-          </label>
-          <input
-            type="email"
-            id="email-login"
-            placeholder="Email"
-            required=""
-          />
-          <input
-            type="password"
-            id="password-login"
-            name="pswd"
-            placeholder="Password"
-            required=""
-          />
-          <button>Login</button>
-        </form>
+            />
+            <input
+              className="input-login"
+              type="email"
+              id="email-signup"
+              placeholder="Email"
+              required=""
+
+            />
+            <input
+              className="input-login"
+              type="password"
+              id="password-signup"
+              name="pswd"
+              placeholder="Password"
+              required=""
+            // onChange={handleUserChange}
+            />
+            <button type='submit' className="Buttons">Sign up</button>
+          </form>
+        </div>
+
+        <div class=" login-form login">
+          <form>
+            <label className="login-label" for="cam" aria-hidden="true">
+              Login
+            </label>
+            <input
+              className="input-login"
+              type="email"
+              id="email-login"
+              placeholder="Email"
+              required=""
+            // onChange={handleLoginChange}
+            />
+            <input
+              className="input-login"
+              type="password"
+              id="password-login"
+              name="pswd"
+              placeholder="Password"
+              required=""
+            // onChange={handleLoginChange}
+            />
+            <button type="submit" className="buttons">Login</button>
+          </form>
+        </div>
       </div>
-    </div>
     </div>
   );
 };
