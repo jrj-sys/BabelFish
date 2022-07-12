@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.css";
 import { Button, Avatar, TextField } from "@mui/material";
-import THIS from ".../assets/images/THIS.jpg";
+import THIS from "../../assets/images/THIS.jpg";
 
 function Chatting({ own }) {
   return (
