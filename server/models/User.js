@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+const bcrypt = require('bcrypt');
 
 const userSchema = new Schema(
   {
@@ -12,11 +13,7 @@ const userSchema = new Schema(
       type: String,
       required: true,
       unique: true,
-      // match: [[/.+@.+\..+/, 
-      // `Must match an email address! 
-      // ¡Debe coincidir con una dirección de correo electrónico!
-      // Doit correspondre à une adresse e-mail !
-      // 必须匹配电子邮件地址!`]]
+      match: [/.+@.+\..+/, 'Must match an email address!']
     },
     password: {
       type: String,
@@ -26,8 +23,6 @@ const userSchema = new Schema(
     preferredLang: {
       type: String,
       required: true,
-      // must match format en-US or en
-      // match: [[/^[a-z]{2}-[A-Z]{2}$/, 'Must match a valid language code.']]
     },
     profilePic: {
       type: String,
@@ -39,6 +34,12 @@ const userSchema = new Schema(
         type: Schema.Types.ObjectId,
         ref: 'User'
       }
+    ],
+    conversations: [
+      {
+        type: String,
+        ref: 'Conversation'
+      }
     ]
   },
   {
@@ -48,8 +49,20 @@ const userSchema = new Schema(
   }
 );
 
+// password middleware
+userSchema.pre('save', async function(next) {
+  if (this.isNew || this.isModified('password')) {
+    const saltRounds = 10;
+    this.password = await bcrypt.hash(this.password, saltRounds);
+  }
+})
+
+userSchema.methods.isCorrectPassword = async function(pw) {
+  return bcrypt.compare(pw, this.password);
+}
+
 // virtual for contact list
-userSchema.virtual('contactCount').get(function() {
+userSchema.virtual('contactCount').get(function () {
   return this.contacts.length;
 });
 
