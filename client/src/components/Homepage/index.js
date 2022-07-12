@@ -2,18 +2,28 @@ import React from "react";
 import "./style.css";
 import { Card, Avatar, CardActionArea } from "@mui/material";
 import Drawer from "../Drawer";
+import { Link, useNavigate } from 'react-router-dom';
 
 import avatarImgOne from "../../assets/images/THIS.jpg";
 import avatarImgTwo from "../../assets/images/THIS.jpg";
 
-function Homepage() {
+function Homepage(userid) {
+  let navigate = useNavigate();
+
+  const routeChange = () => {
+    let path = `/message/{userid}`;
+    navigate(path);
+  }
+
   return (
     <div>
-      <Drawer />
       <h2>conversation</h2>
 
+      {/* map each conversation */}
       <Card className="convo-card" style={{ backgroundColor: "lightgrey" }}>
-        <CardActionArea >
+        <CardActionArea
+          onclick={routeChange}
+        >
           <div className="convo-title">
             <Avatar alt="" src={avatarImgOne} className="convo-avatar"></Avatar>
             <p className="convo-name">Paul</p>
