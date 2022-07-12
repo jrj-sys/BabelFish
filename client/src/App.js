@@ -11,7 +11,7 @@ function App() {
   return (
     <div>
       <ProfilePage></ProfilePage>
-      {/* <Drawer />
+      <Drawer />
       <Router>
         <Routes>
           <Route path="/" element={<Homepage />} />
@@ -24,7 +24,7 @@ function App() {
           {" "}
           <LoginPage />{" "}
         </div>
-      </Router> */}
+      </Router>
     </div>
   );
 }
