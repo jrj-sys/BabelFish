@@ -1,12 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import ProfilePage from './components/Profile'
-
+import React from "react";
+import Homepage from "./components/Homepage";
+import Message from "./components/Message"
+import Drawer from './components/Drawer'
+import ProfilePage from "./components/Profile";
 
 function App() {
   return (
-    <ProfilePage></ProfilePage>
+    <div >
+      {/* <Drawer /> */}
+      <Message></Message>
+      {/* <ProfilePage></ProfilePage> */}
+    </div>
   );
 }
 
