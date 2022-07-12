@@ -1,0 +1,51 @@
+.messageAvatar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 80px;
+}
+
+/* not current user message */
+.messageTop {
+  display: flex;
+}
+
+.messageText {
+  padding: 10px;
+  border-radius: 20px;
+  background-color: rgb(0, 217, 255);
+  max-width: 250px;
+  margin-bottom: 0;
+  margin-left: 10px;
+}
+
+.messageBottom {
+  margin-left: 10px;
+}
+
+/* current user messages */
+.messageTop.own {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.messageText.own {
+  padding: 10px;
+  border-radius: 20px;
+  background-color: rgb(192, 195, 194);
+  max-width: 250px;
+  margin-bottom: 0;
+  margin-right: 10px;
+}
+
+.messageBottom.own {
+  text-align: end;
+  margin-right: 10px;
+}
+
+.messageInput {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
