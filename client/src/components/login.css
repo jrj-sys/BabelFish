@@ -44,7 +44,7 @@ input {
   outline: none;
   border-radius: 5px;
 }
-button {
+.buttons {
   width: 61%;
   height: 41px;
   margin: 10px auto;
@@ -61,7 +61,7 @@ button {
   transition: 0.2s ease-in;
   cursor: pointer;
 }
-button:hover {
+.buttons:hover {
   background: #6a45af;
 }
 .login label {

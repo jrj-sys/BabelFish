@@ -3,15 +3,12 @@ import Homepage from "./components/Homepage";
 
 import "./App.css";
 import LoginPage from "./components/login";
+import { Drawer } from "@mui/material";
 
 function App() {
   return (
     <div>
-      <Homepage></Homepage>
-      <div className="App">
-        {" "}
-        <LoginPage />{" "}
-      </div>
+      <div className="App"></div>
     </div>
   );
 }
