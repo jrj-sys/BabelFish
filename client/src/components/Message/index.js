@@ -2,14 +2,14 @@ import React from 'react'
 import './style.css'
 import { Button, Avatar, TextField } from '@mui/material'
 
-import avatarImgTwo from "../../assets/images/imgExamples/ed-panopio-img-2036.jpg"
+// import avatarImgTwo from "../../assets/images/imgExamples/ed-panopio-img-2036.jpg"
 
 function Chatting({ own }) {
     return (
         <div>
             <div className='messageAvatar'>
                 <Avatar
-                    src={avatarImgTwo}
+                    // src={avatarImgTwo}
                     alt=''
                     sx={{
                         width: '56px',

@@ -1,0 +1,42 @@
+.container{
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+.card{
+    width: 300px;
+    height: 480px;
+    background: grey;
+    border-radius: 10px;
+    box-shadow: 5px, 10px, 20px, black;
+}
+.upper-container{
+    height: 100px;
+    background: linear-gradient(to right, #2d00f7, #ff0291);
+    border-radius: 10px;
+
+}
+.image-container img{
+    background-color: white;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    padding: 5px;
+    transform: translate(95px, 45px);
+}
+img{
+    border: 2px solid #8e00b9;
+}
+.lower-container{
+    margin-top: 60px;
+    height: 300px;
+    text-align: center;
+    padding-top: 10px;
+}
+.lower-container h3{
+    color: #0d9ee0;
+    font-weight: 1000;
+    font-size: 1.2rem;
+}

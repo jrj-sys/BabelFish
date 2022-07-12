@@ -1,13 +1,12 @@
-import React from 'react';
-// import ReactDOM from 'react-dom/client';
-import { Card, Typography, CardMedia, CardContent } from '@mui/material';
-
+import React, { useState } from "react";
+import './Profile.css'
 
 function ProfilePage() {
+    const [userName,setname] = useState('Your Name')
+    const [email,setEmail] = useState('Your Email')
+
     const uploadedImage = React.useRef(null);
     const imageUploader = React.useRef(null);
-
-    // const classes = useStyles()
 
     const handleImageUpload = e => {
         const [file] = e.target.files;
@@ -21,10 +20,22 @@ function ProfilePage() {
             reader.readAsDataURL(file);
         }
     };
+    
 
     return (
-        <Card>
-            <input
+       <div className="container">
+         <div className="card">
+            <div className='upper-container'>
+                <div className="image-container">
+                <img ref={uploadedImage} alt='' height='100px' width='100px'
+                 onClick={() => imageUploader.current.click()}
+                  />
+                </div>
+            </div>
+            <div className='lower-container'>
+                <h3> { userName }</h3>
+                <h3> { email } </h3> 
+                <input
                 type='file'
                 accept='image/*'
                 onChange={handleImageUpload}
@@ -32,24 +43,13 @@ function ProfilePage() {
                 multiple='false'
                 style={{
                     display: 'none'
-                }} />
-            onClick={() => imageUploader.current.click()}
-            <CardMedia
-                image={uploadedImage}
-                title="Profile image for user"
-            />
-            <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">
-                    CardMedia Example
-                </Typography>
-                <Typography variant="body2" color="textSecondary" component="p">
-                    The CardMedia component sets a background image to cover available
-                    space.
-                </Typography>
-            </CardContent>
-        </Card>
+                }}
+                />
+                <button>Message</button>
+            </div>
+        </div>
+       </div>
     )
 }
 
-
-export default ProfilePage;
+export default ProfilePage

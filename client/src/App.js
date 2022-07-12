@@ -10,7 +10,8 @@ import NoMatch from "./pages/NoMatch";
 function App() {
   return (
     <div>
-      <Drawer />
+      <ProfilePage></ProfilePage>
+      {/* <Drawer />
       <Router>
         <Routes>
           <Route path="/" element={<Homepage />} />
@@ -23,7 +24,7 @@ function App() {
           {" "}
           <LoginPage />{" "}
         </div>
-      </Router>
+      </Router> */}
     </div>
   );
 }
