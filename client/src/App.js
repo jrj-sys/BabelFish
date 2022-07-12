@@ -7,10 +7,10 @@ function App() {
   return (
     <div>
       <Homepage></Homepage>
-    <div className="App">
-      {" "}
-      <LoginPage />{" "}
-    </div>
+      <div className="App">
+        {" "}
+        <LoginPage />{" "}
+      </div>
     </div>
   );
 }

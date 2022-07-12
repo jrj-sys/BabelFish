@@ -2,6 +2,7 @@ import "./login.css";
 
 const LoginPage = () => {
   return (
+    <div className="page">
     <div class="main">
       <input type="checkbox" id="cam" aria-hidden="true" />
 
@@ -54,6 +55,7 @@ const LoginPage = () => {
           <button>Login</button>
         </form>
       </div>
+    </div>
     </div>
   );
 };

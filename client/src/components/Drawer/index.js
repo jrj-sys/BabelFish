@@ -24,6 +24,7 @@ import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import SettingsIcon from "@mui/icons-material/Settings";
 import NewspaperIcon from "@mui/icons-material/Newspaper";
 import LogoutIcon from "@mui/icons-material/Logout";
+import Auth from "../../../utils/auth";
 const drawerWidth = 240;
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
@@ -81,6 +82,11 @@ export default function PersistentDrawerLeft() {
 
   const handleDrawerClose = () => {
     setOpen(false);
+  };
+
+  const logout = (event) => {
+    event.preventDefault();
+    Auth.logout();
   };
 
   return (
@@ -172,7 +178,8 @@ export default function PersistentDrawerLeft() {
             {
               text: "Logout",
               icon: <LogoutIcon />,
-              action: <Link to="/" />,
+              action: <a href="/" onClick={logout}>Logout</a>
+              ,
             },
           ].map(({ text, icon, action }) => (
             <ListItem key={text} disablePadding>
