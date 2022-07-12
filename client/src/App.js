@@ -4,6 +4,8 @@ import Homepage from "./components/Homepage";
 import LoginPage from "./components/login";
 import ProfilePage from "./components/Profile";
 import Drawer from "./components/Drawer";
+import Message from "./components/Message";
+import NoMatch from "./pages/NoMatch";
 // import logo from "./logo.svg";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
