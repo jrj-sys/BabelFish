@@ -8,35 +8,36 @@
 .card{
     width: 300px;
     height: 480px;
-    background: grey;
+    background: white;
     border-radius: 10px;
-    box-shadow: 5px, 10px, 20px, black;
+    box-shadow:  5px 10px 8px 10px rgb(41, 148, 167);
 }
 .upper-container{
-    height: 100px;
-    background: linear-gradient(to right, #2d00f7, #ff0291);
-    border-radius: 10px;
-
+    height: 150px;
+    background: linear-gradient(to right, #ffb617, #ff1616);
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
 }
 .image-container img{
     background-color: white;
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     padding: 5px;
-    transform: translate(95px, 45px);
+    transform: translate(70px, 40px);
 }
 img{
     border: 2px solid #8e00b9;
 }
 .lower-container{
-    margin-top: 60px;
+    margin-top: 70px;
     height: 300px;
     text-align: center;
     padding-top: 10px;
 }
 .lower-container h3{
-    color: #0d9ee0;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: #f05901;
     font-weight: 1000;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
 }

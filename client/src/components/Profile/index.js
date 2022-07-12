@@ -33,8 +33,8 @@ function ProfilePage() {
                 </div>
             </div>
             <div className='lower-container'>
-                <h3> { userName }</h3>
-                <h3> { email } </h3> 
+                <h3>Username: { userName }</h3>
+                <h3>Email: { email } </h3> 
                 <input
                 type='file'
                 accept='image/*'
