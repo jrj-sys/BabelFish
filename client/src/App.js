@@ -1,12 +1,12 @@
 import React from "react";
 
 import Homepage from "./components/Homepage";
-import Chatting from "./components/Chatting"
+import Message from "./components/Message"
 
 function App() {
   return (
     <div >
-      <Chatting></Chatting>
+      <Message />
     </div>
   );
 }
