@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import './Profile.css'
 
 function ProfilePage() {
-    const [userName,setname] = useState('Your Name')
-    const [email,setEmail] = useState('Your Email')
+    const [userName, setname] = useState('Your Name')
+    const [email, setEmail] = useState('Your Email')
 
     const uploadedImage = React.useRef(null);
     const imageUploader = React.useRef(null);
