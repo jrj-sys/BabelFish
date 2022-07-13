@@ -5,14 +5,9 @@ import {
   ApolloProvider,
   InMemoryCache,
   // createHttpLink,
+  split,
+  HttpLink
 } from '@apollo/client'
-import { GraphQLWsLink } from '@apollo/client/link/subscriptions'
-import { createClient } from 'graphql-ws'
-import { createServer } from 'http';
-import { ApolloServerPluginDrainHttpServer } from "apollo-server-core";
-import { makeExecutableSchema } from '@graphql-tools/schema';
-import { WebSocketServer } from 'ws';
-import { useServer } from 'graphql-ws/lib/use/ws';
 // import { setContext } from '@apollo/client/link/context';
 import Homepage from "./components/Homepage";
 import LoginPage from "./components/Login/login";
@@ -21,10 +16,9 @@ import ProfilePage from "./components/Profile";
 
 import Chat from "./components/Chat";
 import NoMatch from "./pages/NoMatch";
-
-// const httpLink = createHttpLink({
-//   uri: '/graphql',
-// });
+import { GraphQLWsLink } from "@apollo/client/link/subscriptions";
+import { getMainDefinition } from '@apollo/client/utilities'
+import { createClient } from 'graphql-ws'
 
 // const authLink = setContext((_, { headers }) => {
 //   const token = localStorage.getItem('id_token');
@@ -36,15 +30,30 @@ import NoMatch from "./pages/NoMatch";
 //   };
 // });
 
+const httpLink = new HttpLink({
+  uri: 'http://localhost:3001/graphql'
+})
+
 const client = new ApolloClient({
-  // link: authLink.concat(httpLink),
-  uri: 'http://localhost:3000/graphql',
+  link: splitLink,
   cache: new InMemoryCache(),
 });
 
 const wsLink = new GraphQLWsLink(createClient({
-  url: 'ws://localhost:3000/subscriptions'
+  url: 'ws://localhost:3001/graphql'
 }))
+
+const splitLink = split(
+  ({ query }) => {
+    const definition = getMainDefinition(query);
+    return (
+      definition.kind === 'OperationDefinition' &&
+      definition.operation === 'subscription'
+    );
+  },
+  wsLink,
+  httpLink
+)
 
 function App() {
   return (

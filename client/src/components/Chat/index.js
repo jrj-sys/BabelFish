@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import './style.css'
 import { Avatar, TextField } from '@mui/material'
-import { useQuery, useMutation } from '@apollo/client'
+import { useQuery, useMutation, useSubscription } from '@apollo/client'
 import { POST_MESSAGE } from '../../utils/mutation'
 import { GET_MESSAGES } from '../../utils/queries'
+import { MESSAGES_SUBSCRIPTION } from '../../utils/subscriptions'
 import { Container, Row, Col, FormInput, Button } from 'shards-react'
 
 // import avatarImgTwo from "../../assets/images/imgExamples/ed-panopio-img-2036.jpg"
