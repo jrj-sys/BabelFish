@@ -24,7 +24,7 @@ import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import SettingsIcon from "@mui/icons-material/Settings";
 import NewspaperIcon from "@mui/icons-material/Newspaper";
 import LogoutIcon from "@mui/icons-material/Logout";
-import AuthService from "../../utils/auth";
+import Auth from "../../utils/auth";
 const drawerWidth = 240;
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
@@ -136,29 +136,31 @@ export default function PersistentDrawerLeft() {
             {
               icon: <HomeIcon />,
               text: "Home",
-              action: <Link to="/" />,
+              action: "/",
             },
             {
               icon: <ChatBubbleOutlineIcon />,
               text: "Start a Conversation",
-              action: <Link to="/chat" />,
+              action: "/chat",
             },
             {
               icon: <TranslateIcon />,
               text: "Make a Translation",
-              action: <Link to="/translate" />,
+              action: "/translate",
             },
             {
               icon: <NewspaperIcon />,
               text: "Developer News",
-              action: <Link to="/blog" />,
+              action: "/blog",
             },
           ].map(({ text, icon, action }) => (
             <ListItem disablePadding>
-              <ListItemButton key={action}>
-                <ListItemIcon>{icon}</ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
+              <Link to={action}>
+                <ListItemButton>
+                  <ListItemIcon>{icon}</ListItemIcon>
+                  <ListItemText primary={text} />
+                </ListItemButton>
+              </Link>
             </ListItem>
           ))}
         </List>
@@ -168,25 +170,30 @@ export default function PersistentDrawerLeft() {
             {
               text: "Account",
               icon: <AccountBoxIcon />,
-              action: <Link to="/dashboard" />,
+              action: "/dashboard",
             },
             {
               text: "Settings",
               icon: <SettingsIcon />,
-              action: <Link to="/settings" />,
+              action: "/settings",
             },
             {
               text: "Logout",
               icon: <LogoutIcon />,
+<<<<<<< HEAD
               action: (
                 <a href="/" onClick={logout}>
                   Logout
                 </a>
               ),
+=======
+              action: { logout },
+>>>>>>> 9784029327680538a93c9ce5455fe582659b95c8
             },
           ].map(({ text, icon, action }) => (
             <ListItem key={text} disablePadding>
-              <ListItemButton key={action}>
+              <ListItemButton>
+                <Link to={action} />
                 <ListItemIcon>{icon}</ListItemIcon>
                 <ListItemText primary={text} />
               </ListItemButton>
