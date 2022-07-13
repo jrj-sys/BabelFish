@@ -3,19 +3,19 @@ const path = require('path');
 // import ApolloServer
 const { ApolloServer } = require('apollo-server-express');
 const { authMiddleware } = require('./utils/auth')
-
-
+const { GraphQLServer, PubSub } = require('graphql-yoga')
 // import typeDefs and resolvers
 const { typeDefs, resolvers } = require('./schemas')
 const db = require('./config/connection')
 const { ApolloServerPluginLandingPageGraphQLPlayground } = require('apollo-server-core');
 
 const PORT = process.env.PORT || 3001;
+
 // initiate an ApolloServer object and pass in our schema
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  context: authMiddleware,
+  context: { authMiddleware },
   plugins: [ApolloServerPluginLandingPageGraphQLPlayground({embed: true})],
   playground: true
 });
@@ -30,6 +30,7 @@ app.use(express.json());
 //   app.use(express.static(path.join(__dirname, '../client/public/')));
 // }
 // prod vs. dev
+
 
 const startApolloServer = async (typeDefs, resolvers) => {
   await server.start();

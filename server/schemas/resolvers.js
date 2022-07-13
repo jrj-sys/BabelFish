@@ -1,6 +1,9 @@
-const { User, Conversation, Message } = require('../models');
+const { User, Message } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
+
+const subscribers = [];
+const onMessagesUpdates = (fn) => subscribers.push(fn);
 
 const resolvers = {
   Query: {
@@ -10,7 +13,6 @@ const resolvers = {
         const userData = await User.findOne({ _id: context.user._id })
           .select('')
           .populate('contacts')
-          .populate('conversations')
 
         return userData
       }
@@ -26,12 +28,12 @@ const resolvers = {
       return User.findOne({ username })
     },
     // get all convos
-    conversations: async () => {
-      return Conversation.find({})
-    },
+    // conversations: async () => {
+    //   return Conversation.find({})
+    // },
     // get all messages
-    messages: async () => {
-      return Message.find({});
+    messages: async (_, args) => {
+      return Message.find({})
     }
   },
   Mutation: {
@@ -63,15 +65,25 @@ const resolvers = {
 
       return { token, user }
     },
-    startConversation: async (_, args, context) => {
-      const conversation = await Conversation.create({ args });
+    // startConversation: async (_, args, context) => {
+    //   const conversation = await Conversation.create( args );
 
-      return conversation;
-    },
-    addMessage: async (_, args) => {
+    //   return conversation;
+    // },
+    postMessage: async (_, args) => {
       const message = await Message.create(args);
-
+      subscribers.forEach(fn => fn());
       return message;
+    }
+  },
+  Subscription: {
+    messages: {
+      subscribe: (_, args, { pubsub }) => {
+        const channel = Math.random().toString(36).slice(2, 15);
+        onMessagesUpdates(() => pubsub.publish(channel, { messages }));
+        setTimeout(() => pubsub.publish(channel, { messages }), 0)
+        return pubsub.asyncIterator(channel);
+      }
     }
   }
 };

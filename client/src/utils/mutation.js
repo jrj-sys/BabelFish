@@ -24,3 +24,13 @@ export const ADD_USER = gql`
   } 
 }
 `;
+
+export const POST_MESSAGE = gql`
+  mutation postMessage($user: String!, $content: String!) {
+    postMessage(user: $user, content: $content) {
+      id
+      user
+      content
+    }
+  }
+`
