@@ -119,18 +119,18 @@ const LoginPage = () => {
               <input
                 className="inputs"
                 type="password"
-                name="name"
+                name="password"
                 id="password-login"
                 placeholder="Password"
                 required=""
                 onChange={handleLoginChange}
               />
-              <button className="buttons">Login</button>
+              <button type="submit" className="buttons">Login</button>
             </form>
           </div>
         </div>
       </div>
-    </body>
+    </body >
   );
 };
 
