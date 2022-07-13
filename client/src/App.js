@@ -5,8 +5,8 @@ import {
   ApolloProvider,
   InMemoryCache,
   createHttpLink,
-} from '@apollo/client'
-import { setContext } from '@apollo/client/link/context';
+} from "@apollo/client";
+import { setContext } from "@apollo/client/link/context";
 import Homepage from "./components/Homepage";
 import LoginPage from "./components/Login/login";
 import { Drawer } from "@mui/material";
@@ -15,19 +15,19 @@ import ProfilePage from "./components/Profile";
 import Message from "./components/Message";
 import NoMatch from "./pages/NoMatch";
 // import logo from "./logo.svg";
-import "./App.css";
+// import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const httpLink = createHttpLink({
-  uri: '/graphql',
+  uri: "/graphql",
 });
 
 const authLink = setContext((_, { headers }) => {
-  const token = localStorage.getItem('id_token');
+  const token = localStorage.getItem("id_token");
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : '',
+      authorization: token ? `Bearer ${token}` : "",
     },
   };
 });
@@ -52,12 +52,10 @@ function App() {
           </Routes>
           <div className="App">
             {" "}
-            <LoginPage></LoginPage>
-            {" "}
+            <LoginPage></LoginPage>{" "}
           </div>
         </Router>
       </div>
-
     </ApolloProvider>
   );
 }
