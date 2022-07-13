@@ -24,7 +24,7 @@ import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import SettingsIcon from "@mui/icons-material/Settings";
 import NewspaperIcon from "@mui/icons-material/Newspaper";
 import LogoutIcon from "@mui/icons-material/Logout";
-import AuthService from "../../utils/auth";
+import Auth from "../../utils/auth";
 const drawerWidth = 240;
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
