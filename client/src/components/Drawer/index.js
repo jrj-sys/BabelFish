@@ -136,29 +136,31 @@ export default function PersistentDrawerLeft() {
             {
               icon: <HomeIcon />,
               text: "Home",
-              action: <Link to="/" />,
+              action: "/",
             },
             {
               icon: <ChatBubbleOutlineIcon />,
               text: "Start a Conversation",
-              action: <Link to="/chat" />,
+              action: "/chat",
             },
             {
               icon: <TranslateIcon />,
               text: "Make a Translation",
-              action: <Link to="/translate" />,
+              action: "/translate",
             },
             {
               icon: <NewspaperIcon />,
               text: "Developer News",
-              action: <Link to="/blog" />,
+              action: "/blog",
             },
           ].map(({ text, icon, action }) => (
             <ListItem disablePadding>
-              <ListItemButton key={action}>
-                <ListItemIcon>{icon}</ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
+              <Link to={action}>
+                <ListItemButton>
+                  <ListItemIcon>{icon}</ListItemIcon>
+                  <ListItemText primary={text} />
+                </ListItemButton>
+              </Link>
             </ListItem>
           ))}
         </List>
@@ -168,12 +170,12 @@ export default function PersistentDrawerLeft() {
             {
               text: "Account",
               icon: <AccountBoxIcon />,
-              action: <Link to="/dashboard" />,
+              action: "/dashboard",
             },
             {
               text: "Settings",
               icon: <SettingsIcon />,
-              action: <Link to="/settings" />,
+              action: "/settings",
             },
             {
               text: "Logout",
@@ -186,10 +188,12 @@ export default function PersistentDrawerLeft() {
             },
           ].map(({ text, icon, action }) => (
             <ListItem key={text} disablePadding>
-              <ListItemButton key={action}>
-                <ListItemIcon>{icon}</ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
+              <Link to={action}>
+                <ListItemButton>
+                  <ListItemIcon>{icon}</ListItemIcon>
+                  <ListItemText primary={text} />
+                </ListItemButton>
+              </Link>
             </ListItem>
           ))}
         </List>
