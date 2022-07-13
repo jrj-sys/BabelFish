@@ -9,9 +9,8 @@ import {
 // import { setContext } from '@apollo/client/link/context';
 import Homepage from "./components/Homepage";
 import LoginPage from "./components/Login/login";
-import { Drawer } from "@mui/material";
+import Drawer from "./components/Drawer";
 import ProfilePage from "./components/Profile";
-
 import Message from "./components/Message";
 import NoMatch from "./pages/NoMatch";
 
@@ -41,6 +40,7 @@ function App() {
       <div>
         <Router>
           <Drawer />
+          <LoginPage />
           <Routes>
             <Route path="/" element={<Homepage />} />
             <Route path="/login" element={<LoginPage />} />
