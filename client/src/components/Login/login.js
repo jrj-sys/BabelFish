@@ -15,16 +15,17 @@ const LoginPage = () => {
     event.preventDefault();
     const mutationResponse = await addUser({
       variables: {
-        username: formState.username,
         email: formState.email,
         password: formState.password,
+        firstName: formState.firstName,
+        lastName: formState.lastName,
       },
     });
     const token = mutationResponse.data.addUser.token;
     Auth.login(token);
   };
 
-  const handleUserChange = (event) => {
+  const handleSignupChange = (event) => {
     const { name, value } = event.target;
     setFormState({
       ...formState,
@@ -75,7 +76,7 @@ const LoginPage = () => {
               id="username-signup"
               placeholder="User name"
               required=""
-
+              onChange={handleSignupChange}
             />
             <input
               className="input-login"
@@ -83,7 +84,7 @@ const LoginPage = () => {
               id="email-signup"
               placeholder="Email"
               required=""
-
+              onChange={handleSignupChange}
             />
             <input
               className="input-login"
@@ -92,14 +93,14 @@ const LoginPage = () => {
               name="pswd"
               placeholder="Password"
               required=""
-            // onChange={handleUserChange}
+              onChange={handleSignupChange}
             />
             <button type='submit' className="Buttons">Sign up</button>
           </form>
         </div>
 
         <div class=" login-form login">
-          <form>
+          <form onSubmit={handleLoginFormSubmit}>
             <label className="login-label" for="cam" aria-hidden="true">
               Login
             </label>
@@ -109,7 +110,7 @@ const LoginPage = () => {
               id="email-login"
               placeholder="Email"
               required=""
-            // onChange={handleLoginChange}
+              onChange={handleLoginChange}
             />
             <input
               className="input-login"
@@ -118,7 +119,7 @@ const LoginPage = () => {
               name="pswd"
               placeholder="Password"
               required=""
-            // onChange={handleLoginChange}
+              onChange={handleLoginChange}
             />
             <button type="submit" className="buttons">Login</button>
           </form>
