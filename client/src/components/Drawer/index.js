@@ -24,7 +24,8 @@ import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import SettingsIcon from "@mui/icons-material/Settings";
 import NewspaperIcon from "@mui/icons-material/Newspaper";
 import LogoutIcon from "@mui/icons-material/Logout";
-import Auth from "../../../utils/auth";
+import Auth from "../../utils/auth";
+import Home from "@mui/icons-material/Home";
 const drawerWidth = 240;
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
@@ -132,35 +133,39 @@ export default function PersistentDrawerLeft() {
         </DrawerHeader>
         <Divider />
         <List>
-          {[
+          {/* {[
             {
               icon: <HomeIcon />,
               text: "Home",
-              action: <Link to="/" />,
+              action: "/",
             },
             {
               icon: <ChatBubbleOutlineIcon />,
               text: "Start a Conversation",
-              action: <Link to="/chat" />,
+              action: "/chat",
             },
             {
               icon: <TranslateIcon />,
               text: "Make a Translation",
-              action: <Link to="/translate" />,
+              action: "/translate",
             },
             {
               icon: <NewspaperIcon />,
               text: "Developer News",
-              action: <Link to="/blog" />,
+              action: "/blog",
             },
-          ].map(({ text, icon, action }) => (
-            <ListItem disablePadding>
-              <ListItemButton key={action}>
-                <ListItemIcon>{icon}</ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
+          ].map(({ text, icon, action }) => ( */}
+          <ListItem disablePadding>
+            <ListItemButton>
+                <Link to="/chat" />
+              <ListItemIcon>
+                <HomeIcon />
+              </ListItemIcon>
+              <ListItemText />
+              Home
+            </ListItemButton>
+          </ListItem>
+          {/* ))} */}
         </List>
         <Divider />
         <List>
@@ -168,22 +173,22 @@ export default function PersistentDrawerLeft() {
             {
               text: "Account",
               icon: <AccountBoxIcon />,
-              action: <Link to="/dashboard" />,
+              action: "/dashboard",
             },
             {
               text: "Settings",
               icon: <SettingsIcon />,
-              action: <Link to="/settings" />,
+              action: "/settings",
             },
             {
               text: "Logout",
               icon: <LogoutIcon />,
-              action: <a href="/" onClick={logout}>Logout</a>
-              ,
+              action: { logout },
             },
           ].map(({ text, icon, action }) => (
             <ListItem key={text} disablePadding>
-              <ListItemButton key={action}>
+              <ListItemButton>
+                <Link to={action} />
                 <ListItemIcon>{icon}</ListItemIcon>
                 <ListItemText primary={text} />
               </ListItemButton>

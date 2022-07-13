@@ -6,25 +6,22 @@ import ProfilePage from "./components/Profile";
 import Drawer from "./components/Drawer";
 import Message from "./components/Message";
 import NoMatch from "./pages/NoMatch";
-// import logo from "./logo.svg";
-import "./App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
     <div>
-      <Drawer />
       <Router>
+        <Drawer />
         <Routes>
-          <Route path="/" element={<Homepage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/chat" element={<Message />} />
-          <Route path="/profile" element={<ProfilePage />} />
-          <Route path="*" element={<NoMatch />} />
+          <Route exact path="/" component={<Homepage />} />
+          <Route path="/login" component={<LoginPage />} />
+          <Route path="/chat" component={<Message />} />
+          <Route path="/profile" component={<ProfilePage />} />
+          <Route path="*" component={<NoMatch />} />
         </Routes>
         <div className="App">
           {" "}
-          <LoginPage />{" "}
+          <LoginPage />
         </div>
       </Router>
     </div>
