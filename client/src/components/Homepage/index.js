@@ -1,38 +1,37 @@
 import React from "react";
 import "./style.css";
 import { Card, Avatar, CardActionArea } from "@mui/material";
-import Drawer from "../Drawer";
-
-import avatarImgOne from "../../assets/images/THIS.jpg";
-import avatarImgTwo from "../../assets/images/THIS.jpg";
+import { useNavigate } from 'react-router-dom';
 
 function Homepage() {
+  let navigate = useNavigate();
+
+  const routeChange = () => {
+    let path = `/message/{user._id}`;
+    navigate(path);
+  }
+
   return (
     <div>
-      <Drawer />
       <h2>conversation</h2>
 
+      {/* map each conversation */}
       <Card className="convo-card" style={{ backgroundColor: "lightgrey" }}>
-        <CardActionArea >
-          <div className="convo-title">
-            <Avatar alt="" src={avatarImgOne} className="convo-avatar"></Avatar>
-            <p className="convo-name">Paul</p>
-            <p className="convo-read">4:20pm</p>
-          </div>
-          <p className="convo-message">Supp!</p>
+        <CardActionArea
+          onclick={routeChange}
+        >
+          {/* {conversation.map(() => (
+            <div className="convo-title">
+              <Avatar alt="" src={user.profilePic} className="convo-avatar"></Avatar>
+              <p className="convo-name">{user.username}</p>
+              <p className="convo-read">{conversation.createdAt}</p>
+            </div>
+              // may need to remove this if we cant get it to work
+              <p className="convo-message">{message.messageText}</p>
+          ))} */}
         </CardActionArea>
       </Card>
 
-      <Card className="convo-card" style={{ backgroundColor: "lightgrey" }}>
-        <CardActionArea>
-          <div className="convo-title">
-            <Avatar alt="" src={avatarImgTwo} className="convo-avatar"></Avatar>
-            <p className="convo-name">Sussy</p>
-            <p className="convo-read">1:11pm</p>
-          </div>
-          <p className="convo-message">Message! 👻</p>
-        </CardActionArea>
-      </Card>
     </div>
   );
 }
