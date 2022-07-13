@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.css";
 import { Card, Avatar, CardActionArea } from "@mui/material";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 function Homepage() {
   let navigate = useNavigate();
@@ -9,7 +9,7 @@ function Homepage() {
   const routeChange = () => {
     let path = `/message/{user._id}`;
     navigate(path);
-  }
+  };
 
   return (
     <div>
@@ -17,9 +17,7 @@ function Homepage() {
 
       {/* map each conversation */}
       <Card className="convo-card" style={{ backgroundColor: "lightgrey" }}>
-        <CardActionArea
-          onClick={routeChange}
-        >
+        <CardActionArea onClick={routeChange}>
           {/* {conversation.map(() => (
             <div className="convo-title">
               <Avatar alt="" src={user.profilePic} className="convo-avatar"></Avatar>
@@ -31,7 +29,6 @@ function Homepage() {
           ))} */}
         </CardActionArea>
       </Card>
-
     </div>
   );
 }

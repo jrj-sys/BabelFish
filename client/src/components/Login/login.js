@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
-import { useMutation } from '@apollo/client';
+import React, { useState } from "react";
+import { useMutation } from "@apollo/client";
 import "./login.css";
-import { LOGIN, ADD_USER } from '../../utils/mutation'
-import Auth from '../../utils/auth'
-
+import { LOGIN, ADD_USER } from "../../utils/mutation";
+import Auth from "../../utils/auth";
+import fish from "../../assets/images/babelfish.jpg";
 const LoginPage = () => {
-  const [formState, setFormState] = useState({ email: '', password: '' });
+  const [formState, setFormState] = useState({ email: "", password: "" });
   const [login, { error }] = useMutation(LOGIN);
   const [addUser] = useMutation(ADD_USER);
 
@@ -56,6 +56,21 @@ const LoginPage = () => {
 
   return (
     <body>
+      <div className="fishes">
+        {" "}
+        <img className="fishPic" src={fish} alt="fish"></img>
+        <img className="fishPic" src={fish} alt="fish"></img>
+        <img className="fishPic" src={fish} alt="fish"></img>
+        <img className="fishPic" src={fish} alt="fish"></img>
+        <img className="fishPic" src={fish} alt="fish"></img>
+        <img className="fishPic" src={fish} alt="fish"></img>
+        <img className="fishPic" src={fish} alt="fish"></img>
+        <img className="fishPic" src={fish} alt="fish"></img>
+        <img className="fishPic" src={fish} alt="fish"></img>
+        <img className="fishPic" src={fish} alt="fish"></img>
+      </div>
+      <div className="title">Babel Fish</div>
+
       <div className="loginPage">
         <div className="Main"></div>
         <div class="main">
@@ -125,12 +140,14 @@ const LoginPage = () => {
                 required=""
                 onChange={handleLoginChange}
               />
-              <button type="submit" className="buttons">Login</button>
+              <button type="submit" className="buttons">
+                Login
+              </button>
             </form>
           </div>
         </div>
       </div>
-    </body >
+    </body>
   );
 };
 

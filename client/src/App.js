@@ -13,7 +13,7 @@ import Drawer from "./components/Drawer";
 import ProfilePage from "./components/Profile";
 import Message from "./components/Message";
 import NoMatch from "./pages/NoMatch";
-import Auth from "./utils/auth"
+import Auth from "./utils/auth";
 
 // const httpLink = createHttpLink({
 //   uri: '/graphql',
@@ -36,31 +36,30 @@ const client = new ApolloClient({
 });
 
 function App() {
-  if (Auth.loggedIn()) {
-    return (
-      <ApolloProvider client={client}>
-        <div>
-          <Router>
-            <Drawer />
-            <Homepage></Homepage>
-            <Routes>
-              <Route path="/" element={<Homepage />} />
-              <Route path="/chat" element={<Message />} />
-              <Route path="/profile" element={<ProfilePage />} />
-              <Route path="*" element={<NoMatch />} />
-            </Routes>
-            <div className="App"></div>
-          </Router>
-        </div>
-      </ApolloProvider>
-    )
-  } else {
-    return (
-      <ApolloProvider client={client}>
-        <LoginPage />
-      </ApolloProvider>
-    )
-  }
+  // if (Auth.loggedIn()) {
+  return (
+    <ApolloProvider client={client}>
+      <div>
+        <Router>
+          <Drawer />
+          <Homepage></Homepage>
+          <Routes>
+            <Route path="/" element={<Homepage />} />
+            <Route path="/chat" element={<Message />} />
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="*" element={<NoMatch />} />
+          </Routes>
+          <div className="App"></div>
+        </Router>
+      </div>
+    </ApolloProvider>
+    // );
+    // } else {
+    //   return (
+    //     <ApolloProvider client={client}>
+    //       <LoginPage />
+    //     </ApolloProvider>
+  );
 }
 
 export default App;

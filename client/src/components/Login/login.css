@@ -2,7 +2,26 @@ body {
   margin: 0;
   padding: 0;
 }
-
+.fishPic {
+  width: 175px;
+  height: 100px;
+  color: #000;
+}
+.fishes {
+  overflow: none;
+  white-space: nowrap;
+  background-color: #110e0e;
+}
+.title {
+  font-size: 10vw;
+  position: relative;
+  text-align: center;
+  color: rgb(67, 125, 138);
+  font-weight: 500;
+  background: linear-gradient(to bottom, #130015, #bcbcc1, #e15763);
+  display: flex;
+  justify-content: center;
+}
 .loginPage {
   display: flex;
   justify-content: center;
