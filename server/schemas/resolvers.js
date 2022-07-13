@@ -7,10 +7,10 @@ const resolvers = {
     // logged in User data
     me: async (_, args, context) => {
       if (context.user) {
-      const userData = await User.findOne({ _id: context.user._id })
-        .select('')
-        .populate('contacts')
-        .populate('conversations')
+        const userData = await User.findOne({ _id: context.user._id })
+          .select('')
+          .populate('contacts')
+          .populate('conversations')
 
         return userData
       }
@@ -51,7 +51,9 @@ const resolvers = {
 
       const token = signToken(user)
 
-      return { token, user } 
+      console.log(token)
+
+      return { token, user }
     },
     // add a user
     addUser: async (_, args) => {
@@ -62,7 +64,7 @@ const resolvers = {
       return { token, user }
     },
     startConversation: async (_, args, context) => {
-      const conversation = await Conversation.create( { args } );
+      const conversation = await Conversation.create({ args });
 
       return conversation;
     },
