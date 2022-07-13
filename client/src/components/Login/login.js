@@ -4,7 +4,6 @@ import "./login.css";
 import { LOGIN, ADD_USER } from '../../utils/mutation'
 import Auth from '../../utils/auth'
 
-
 const LoginPage = () => {
   const [formState, setFormState] = useState({ email: '', password: '' });
   const [login, { error }] = useMutation(LOGIN);
@@ -56,81 +55,83 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="page">
-      <div class="main">
-        <input
-          className="input-login"
-          type="checkbox"
-          id="cam"
-          aria-hidden="true"
-        />
+    <body>
+      <div className="loginPage">
+        <div className="Main"></div>
+        <div class="main">
+          <input
+            className="inputs"
+            type="checkbox"
+            id="cam"
+            aria-hidden="true"
+          />
 
-        <div class=" signup-form signup">
-          {/* signup */}
-          <form onSubmit={handleSignupFormSubmit}>
-            <label className="login-label" classfor="cam" aria-hidden="true">
-              Sign up
-            </label>
-            <input
-              className="input-login"
-              type="username"
-              name="username"
-              id="username-signup"
-              placeholder="User name"
-              required=""
-              onChange={handleSignupChange}
-            />
-            <input
-              className="input-login"
-              type="email"
-              name="email"
-              id="email-signup"
-              placeholder="Email"
-              required=""
-              onChange={handleSignupChange}
-            />
-            <input
-              className="input-login"
-              type="password"
-              name="password"
-              id="password-signup"
-              placeholder="Password"
-              required=""
-              onChange={handleSignupChange}
-            />
-            <button type='submit' className="Buttons">Sign up</button>
-          </form>
-        </div>
+          <div class=" signup-form signup">
+            <form onSubmit={handleSignupFormSubmit}>
+              <label className="labels" for="cam" aria-hidden="true">
+                Sign up
+              </label>
+              <input
+                className="inputs"
+                type="username"
+                name="username"
+                id="username-signup"
+                placeholder="User name"
+                required=""
+                onChange={handleSignupChange}
+              />
+              <input
+                className="inputs"
+                type="email"
+                name="email"
+                id="email-signup"
+                placeholder="Email"
+                required=""
+                onChange={handleSignupChange}
+              />
+              <input
+                className="inputs"
+                type="password"
+                name="password"
+                id="password-signup"
+                placeholder="Password"
+                required=""
+                onChange={handleSignupChange}
+              />
+              <button className="buttons">Sign up</button>
+            </form>
+          </div>
 
-        {/* login */}
-        <div class=" login-form login">
-          <form onSubmit={handleLoginFormSubmit}>
-            <label className="login-label" for="cam" aria-hidden="true">
-              Login
-            </label>
-            <input
-              className="input-login"
-              type="email"
-              name="email"
-              id="email-login"
-              placeholder="Email"
-              required=""
-              onChange={handleLoginChange}
-            />
-            <input
-              className="input-login"
-              type="password"
-              name="password"
-              id="password-login"
-              placeholder="Password"
-              required=""
-              onChange={handleLoginChange}
-            />
-            <button type="submit" className="buttons">Login</button>
-          </form>
+          <div class=" login-form login">
+            <form onSubmit={handleLoginFormSubmit}>
+              <label className="labels" for="cam" aria-hidden="true">
+                Login
+              </label>
+              <input
+                className="inputs"
+                type="email"
+                name="email"
+                id="email-login"
+                placeholder="Email"
+                required=""
+                onChange={handleLoginChange}
+              />
+              <input
+                className="inputs"
+                type="password"
+                name="name"
+                id="password-login"
+                placeholder="Password"
+                required=""
+                onChange={handleLoginChange}
+              />
+              <button className="buttons">Login</button>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
+    </body>
   );
 };
+
 export default LoginPage;
