@@ -1,7 +1,4 @@
 const { Schema, model } = require('mongoose');
-const { Conversation } = require('./Conversation')
-const { User } = require('./User')
-
 
 const MessageSchema = new Schema(
   {
