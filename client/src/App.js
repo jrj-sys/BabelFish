@@ -11,7 +11,7 @@ function App() {
   return (
     <div>
       <Router>
-      <Drawer />
+        <Drawer />
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/login" element={<LoginPage />} />
@@ -19,10 +19,7 @@ function App() {
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="*" element={<NoMatch />} />
         </Routes>
-        <div className="App">
-          {" "}
-          <LoginPage />{" "}
-        </div>
+        <div className="App"></div>
       </Router>
     </div>
   );
