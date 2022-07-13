@@ -1,24 +1,3 @@
-<<<<<<< HEAD
-import React from 'react'
-import './style.css'
-import { Button, Avatar, TextField } from '@mui/material'
-
-// import avatarImgTwo from "../../assets/images/imgExamples/ed-panopio-img-2036.jpg"
-
-function Chatting({ own }) {
-    return (
-        <div>
-            <div className='messageAvatar'>
-                <Avatar
-                    // src={avatarImgTwo}
-                    alt=''
-                    sx={{
-                        width: '56px',
-                        height: '56px'
-                    }}
-                />
-            </div>
-=======
 import React from "react";
 import "./style.css";
 import { Button, Avatar, TextField } from "@mui/material";
@@ -37,7 +16,6 @@ function Chatting({ own }) {
           }}
         />
       </div>
->>>>>>> 0ff5e192ba8933a2cb2627cb3c4e1b34f1dc7b01
 
       <div className="message">
         <div className="messageTop">
