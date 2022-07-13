@@ -14,6 +14,7 @@ import ProfilePage from "./components/Profile";
 
 import Message from "./components/Message";
 import NoMatch from "./pages/NoMatch";
+import PersistentDrawerLeft from "./components/";
 // import logo from "./logo.svg";
 // import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -41,7 +42,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <div>
-        <Drawer />
+        <PersistentDrawerLeft />
         <Router>
           <Routes>
             <Route path="/" element={<Homepage />} />
@@ -50,10 +51,7 @@ function App() {
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="*" element={<NoMatch />} />
           </Routes>
-          <div className="App">
-            {" "}
-            <LoginPage></LoginPage>{" "}
-          </div>
+          <div className="App"> </div>
         </Router>
       </div>
     </ApolloProvider>
