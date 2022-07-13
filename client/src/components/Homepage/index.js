@@ -18,7 +18,7 @@ function Homepage() {
       {/* map each conversation */}
       <Card className="convo-card" style={{ backgroundColor: "lightgrey" }}>
         <CardActionArea
-          onclick={routeChange}
+          onClick={routeChange}
         >
           {/* {conversation.map(() => (
             <div className="convo-title">

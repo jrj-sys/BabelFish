@@ -15,10 +15,10 @@ const LoginPage = () => {
     event.preventDefault();
     const mutationResponse = await addUser({
       variables: {
+        username: formState.username,
         email: formState.email,
         password: formState.password,
-        firstName: formState.firstName,
-        lastName: formState.lastName,
+        perferedLang: formState.perferedLang,
       },
     });
     const token = mutationResponse.data.addUser.token;
@@ -66,13 +66,15 @@ const LoginPage = () => {
         />
 
         <div class=" signup-form signup">
+          {/* signup */}
           <form onSubmit={handleSignupFormSubmit}>
             <label className="login-label" classfor="cam" aria-hidden="true">
               Sign up
             </label>
             <input
               className="input-login"
-              type="text"
+              type="username"
+              name="username"
               id="username-signup"
               placeholder="User name"
               required=""
@@ -81,6 +83,7 @@ const LoginPage = () => {
             <input
               className="input-login"
               type="email"
+              name="email"
               id="email-signup"
               placeholder="Email"
               required=""
@@ -89,8 +92,8 @@ const LoginPage = () => {
             <input
               className="input-login"
               type="password"
+              name="password"
               id="password-signup"
-              name="pswd"
               placeholder="Password"
               required=""
               onChange={handleSignupChange}
@@ -99,6 +102,7 @@ const LoginPage = () => {
           </form>
         </div>
 
+        {/* login */}
         <div class=" login-form login">
           <form onSubmit={handleLoginFormSubmit}>
             <label className="login-label" for="cam" aria-hidden="true">
@@ -107,6 +111,7 @@ const LoginPage = () => {
             <input
               className="input-login"
               type="email"
+              name="email"
               id="email-login"
               placeholder="Email"
               required=""
@@ -115,8 +120,8 @@ const LoginPage = () => {
             <input
               className="input-login"
               type="password"
+              name="password"
               id="password-login"
-              name="pswd"
               placeholder="Password"
               required=""
               onChange={handleLoginChange}
