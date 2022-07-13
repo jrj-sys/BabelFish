@@ -170,7 +170,7 @@ export default function PersistentDrawerLeft() {
             {
               text: "Account",
               icon: <AccountBoxIcon />,
-              action: "/dashboard",
+              action: "/profile",
             },
             {
               text: "Settings",
