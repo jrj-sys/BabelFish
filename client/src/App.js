@@ -11,17 +11,17 @@ function App() {
   return (
     <div>
       <Router>
-        <Drawer />
+      <Drawer />
         <Routes>
-          <Route exact path="/" component={<Homepage />} />
-          <Route path="/login" component={<LoginPage />} />
-          <Route path="/chat" component={<Message />} />
-          <Route path="/profile" component={<ProfilePage />} />
-          <Route path="*" component={<NoMatch />} />
+          <Route path="/" element={<Homepage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/chat" element={<Message />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="*" element={<NoMatch />} />
         </Routes>
         <div className="App">
           {" "}
-          <LoginPage />
+          <LoginPage />{" "}
         </div>
       </Router>
     </div>

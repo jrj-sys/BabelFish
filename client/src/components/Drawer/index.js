@@ -25,7 +25,6 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import NewspaperIcon from "@mui/icons-material/Newspaper";
 import LogoutIcon from "@mui/icons-material/Logout";
 import Auth from "../../utils/auth";
-import Home from "@mui/icons-material/Home";
 const drawerWidth = 240;
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
@@ -133,7 +132,7 @@ export default function PersistentDrawerLeft() {
         </DrawerHeader>
         <Divider />
         <List>
-          {/* {[
+          {[
             {
               icon: <HomeIcon />,
               text: "Home",
@@ -154,18 +153,16 @@ export default function PersistentDrawerLeft() {
               text: "Developer News",
               action: "/blog",
             },
-          ].map(({ text, icon, action }) => ( */}
-          <ListItem disablePadding>
-            <ListItemButton>
-                <Link to="/chat" />
-              <ListItemIcon>
-                <HomeIcon />
-              </ListItemIcon>
-              <ListItemText />
-              Home
-            </ListItemButton>
-          </ListItem>
-          {/* ))} */}
+          ].map(({ text, icon, action }) => (
+            <ListItem disablePadding>
+              <Link to={action}>
+                <ListItemButton>
+                  <ListItemIcon>{icon}</ListItemIcon>
+                  <ListItemText primary={text} />
+                </ListItemButton>
+              </Link>
+            </ListItem>
+          ))}
         </List>
         <Divider />
         <List>
