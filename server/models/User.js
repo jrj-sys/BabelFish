@@ -23,6 +23,7 @@ const userSchema = new Schema(
     preferredLang: {
       type: String,
       required: true,
+      default: 'en'
     },
     profilePic: {
       type: String,
@@ -50,14 +51,14 @@ const userSchema = new Schema(
 );
 
 // password middleware
-userSchema.pre('save', async function(next) {
+userSchema.pre('save', async function (next) {
   if (this.isNew || this.isModified('password')) {
     const saltRounds = 10;
     this.password = await bcrypt.hash(this.password, saltRounds);
   }
 })
 
-userSchema.methods.isCorrectPassword = async function(pw) {
+userSchema.methods.isCorrectPassword = async function (pw) {
   return bcrypt.compare(pw, this.password);
 }
 
