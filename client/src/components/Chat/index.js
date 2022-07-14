@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import ScrollToBottom from 'react-scroll-to-bottom'
+import './style.css'
+
 
 function Chat({ socket, username, room }) {
   const [currentMessage, setCurrentMessage] = useState('');
@@ -33,11 +35,11 @@ function Chat({ socket, username, room }) {
   }, [socket]);
 
   return (
-    <div className="chat-window">
-      <div className="chat-header">
+    <div className="chat-window" id="chatWindow">
+      <div className="chat-header" id="chatHeader">
         <p>Chatting as: {username}</p>
       </div>
-      <div className="chat-body">
+      <div className="chat-body" id="chatBody">
         <ScrollToBottom className="message-container">
         {messageList.map((messageContent) => {
           return <div className="message" 
@@ -56,7 +58,7 @@ function Chat({ socket, username, room }) {
         })}
         </ScrollToBottom>
       </div>
-      <div className="chat-footer">
+      <div className="chat-footer" id="chatFooter">
         <input type="text" 
         placeholder="Send something..."
         value={currentMessage}

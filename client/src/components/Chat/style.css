@@ -1,4 +1,4 @@
-.Chat {
+/* .Chat {
   width: 100vw;
   height: 100vh;
   background: #fff;
@@ -51,16 +51,16 @@ body {
 }
 
 .chat-window {
-  width: 300px;
-  height: 420px;
+  width: 100%;
+  height: 87%;
+  position: absolute;
 }
 
 .chat-window p {
   margin: 0;
 }
-.chat-window .chat-header {
+ .chat-header {
   height: 45px;
-  border-radius: 6px;
   background: #263238;
   position: relative;
   cursor: pointer;
@@ -103,7 +103,7 @@ body {
   max-width: 120px;
   background-color: #43a047;
   border-radius: 5px;
-  color: white;
+  color: rgb(255, 249, 249);
   display: flex;
   align-items: center;
   margin-right: 5px;
@@ -112,6 +112,10 @@ body {
   padding-left: 5px;
   overflow-wrap: break-word;
   word-break: break-word;
+}
+.chat-body {
+  display: flex;
+  height: 100%;
 }
 
 #host {
@@ -152,7 +156,6 @@ body {
 }
 
 .chat-window .chat-footer {
-  height: 40px;
   border: 1px solid #263238;
   border-top: none;
   display: flex;
@@ -188,4 +191,26 @@ body {
 }
 .hide {
   opacity: 0 !important;
+} */
+
+#chatFooter {
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+} 
+
+#chatWindow{
+  height: 100%;
+  width: 100%;
+ 
 }
+
+#chatBody{
+  height: 685px;
+  /* background-image: url('../../assets/images/universe.jpg'); */
+}
+
+#chatHeader {
+  margin-top: 65px;
+}
+
