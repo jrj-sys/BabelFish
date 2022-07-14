@@ -148,11 +148,6 @@ export default function PersistentDrawerLeft() {
               text: "Make a Translation",
               action: "/translate",
             },
-            {
-              icon: <NewspaperIcon />,
-              text: "Developer News",
-              action: "/blog",
-            },
           ].map(({ text, icon, action }) => (
             <ListItem disablePadding>
               <Link to={action}>
@@ -176,7 +171,7 @@ export default function PersistentDrawerLeft() {
               text: "Settings",
               icon: <SettingsIcon />,
               action: "/settings",
-            }
+            },
           ].map(({ text, icon, action }) => (
             <ListItem key={text} disablePadding>
               <Link to={action}>
@@ -190,7 +185,9 @@ export default function PersistentDrawerLeft() {
           <ListItem key="Logout" disablePadding>
             <Link to="/">
               <ListItemButton onClick={() => AuthService.logout()}>
-                <ListItemIcon><LogoutIcon /></ListItemIcon>
+                <ListItemIcon>
+                  <LogoutIcon />
+                </ListItemIcon>
                 <ListItemText primary="Logout" />
               </ListItemButton>
             </Link>

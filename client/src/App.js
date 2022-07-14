@@ -7,7 +7,7 @@ import {
   // createHttpLink,
 } from "@apollo/client";
 // import { setContext } from '@apollo/client/link/context';
-import Homepage from "./components/Homepage";
+// import Homepage from "./components/Homepage";
 import LoginPage from "./components/Login/login";
 import Drawer from "./components/Drawer";
 import ProfilePage from "./components/Profile";
@@ -40,7 +40,7 @@ function App() {
             <Drawer />
 
             <Routes>
-              <Route path="/" element={<Homepage />} />
+              {/* <Route path="/" element={<Homepage />} /> */}
               <Route path="/chat" element={<ChatApp />} />
               <Route path="/profile" element={<ProfilePage />} />
               <Route path="*" element={<NoMatch />} />
