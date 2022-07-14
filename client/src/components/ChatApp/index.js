@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from "react";
 // import React hooks, useSubscription for persistent GraphQL updates
-import { useQuery, useMutation, useSubscription } from '@apollo/client'
-import { POST_MESSAGE } from '../../utils/mutation'
-import { GET_MESSAGES } from '../../utils/queries'
-import { MESSAGES_SUBSCRIPTION } from '../../utils/subscriptions'
-import { Avatar, TextField } from '@mui/material'
-import { Container, Row, Col, FormInput, Button } from 'shards-react'
-import Chat from '../Chat'
-import './style.css'
-// SocketIO 
-import io from 'socket.io-client'
-// connect io to React 
-const socket = io.connect('http://localhost:3001');
+import { useQuery, useMutation, useSubscription } from "@apollo/client";
+import { POST_MESSAGE } from "../../utils/mutation";
+import { GET_MESSAGES } from "../../utils/queries";
+import { MESSAGES_SUBSCRIPTION } from "../../utils/subscriptions";
+import { Avatar, TextField } from "@mui/material";
+
+import Chat from "../Chat";
+import "./style.css";
+// SocketIO
+import io from "socket.io-client";
+// connect io to React
+const socket = io.connect("http://localhost:3001");
 
 const ChatApp = () => {
 
@@ -27,7 +27,6 @@ const ChatApp = () => {
       setShowChat(true);
     }
   };
-
 
   return (
     <div className="Chat">
@@ -45,7 +44,7 @@ const ChatApp = () => {
       <Chat socket={socket} nickname={nickname} room={room}/>
       )}
     </div>
-  )
-}
+  );
+};
 
 export default ChatApp;

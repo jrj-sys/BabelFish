@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
-import { useMutation } from '@apollo/client';
+import React, { useState } from "react";
+import { useMutation } from "@apollo/client";
 import "./login.css";
-import { LOGIN, ADD_USER } from '../../utils/mutation'
-import Auth from '../../utils/auth'
+import { LOGIN, ADD_USER } from "../../utils/mutation";
+import Auth from "../../utils/auth";
 
 const LoginPage = () => {
-  const [formState, setFormState] = useState({ email: '', password: '' });
-  const [preferredLanguage, setPreferredLanguage] = useState('')
+  const [formState, setFormState] = useState({ email: "", password: "" });
+  const [preferredLanguage, setPreferredLanguage] = useState("");
   const [login, { error }] = useMutation(LOGIN);
   const [addUser] = useMutation(ADD_USER);
 
@@ -101,9 +101,14 @@ const LoginPage = () => {
                 onChange={handleSignupChange}
               />
               <label for="language-select">Choose a preferred language: </label>
-                <select name="languages" id="language-select" 
+              <select
+                name="languages"
+                id="language-select"
                 value={preferredLanguage}
-                onChange={(e) => {setPreferredLanguage(e.target.value)}}>
+                onChange={(e) => {
+                  setPreferredLanguage(e.target.value);
+                }}
+              >
                 <option value="en">English</option>
                 <option value="zh">Chinese (Simplified)</option>
                 <option value="es">Spanish</option>
@@ -120,8 +125,11 @@ const LoginPage = () => {
                 <option value="el">Greek</option>
                 <option value="nl">Dutch</option>
                 <option value="af">Afrikaans</option>
-                </select>
-              <button className="buttons" type="submit">Sign Up</button>
+              </select>
+
+              <button className="buttons" type="submit">
+                Sign Up
+              </button>
             </form>
           </div>
 
@@ -148,12 +156,14 @@ const LoginPage = () => {
                 required=""
                 onChange={handleLoginChange}
               />
-              <button type="submit" className="buttons">Login</button>
+              <button type="submit" className="buttons">
+                Login
+              </button>
             </form>
           </div>
         </div>
       </div>
-    </body >
+    </body>
   );
 };
 

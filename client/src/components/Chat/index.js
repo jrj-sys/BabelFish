@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import Auth from '../../utils/auth'
 import { v4 as uuidv4 } from 'uuid'
 import ScrollToBottom from 'react-scroll-to-bottom'
+import './style.css'
+
 
 function Chat({ socket, nickname, room }) {
   const user = Auth.getProfile();
@@ -38,11 +40,11 @@ function Chat({ socket, nickname, room }) {
   }, [socket]);
 
   return (
-    <div className="chat-window">
-      <div className="chat-header">
-        <p>Chatting as: {nickname}</p>
+    <div className="chat-window" id="chatWindow">
+      <div className="chat-header" id="chatHeader">
+        <p>Chatting as: {username}</p>
       </div>
-      <div className="chat-body">
+      <div className="chat-body" id="chatBody">
         <ScrollToBottom className="message-container">
         {messageList.map((messageContent) => {
           return <div className="message" 
@@ -61,7 +63,7 @@ function Chat({ socket, nickname, room }) {
         })}
         </ScrollToBottom>
       </div>
-      <div className="chat-footer">
+      <div className="chat-footer" id="chatFooter">
         <input type="text" 
         placeholder="Send something..."
         value={currentMessage}
