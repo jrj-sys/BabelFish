@@ -5,14 +5,15 @@ import {
   ApolloProvider,
   InMemoryCache,
   // createHttpLink,
-} from '@apollo/client'
+} from "@apollo/client";
 // import { setContext } from '@apollo/client/link/context';
 import Homepage from "./components/Homepage";
 import LoginPage from "./components/Login/login";
+import Drawer from "./components/Drawer";
 import ProfilePage from "./components/Profile";
-import ChatApp from "./components/ChatApp";
+import Message from "./components/Message";
 import NoMatch from "./pages/NoMatch";
-import { Drawer } from "@mui/material";
+import Auth from "./utils/auth"
 
 
 // const authLink = setContext((_, { headers }) => {
@@ -20,39 +21,43 @@ import { Drawer } from "@mui/material";
 //   return {
 //     headers: {
 //       ...headers,
-//       authorization: token ? `Bearer ${token}` : '',
+//       authorization: token ? Bearer ${token} : '',
 //     },
 //   };
 // });
 
 const client = new ApolloClient({
   // link: authLink.concat(httpLink),
+  uri: "http://localhost:3000/graphql",
   cache: new InMemoryCache(),
 });
 
 function App() {
-  return (
-  
-    <ApolloProvider client={client}>
-      <div>
-        <Drawer />
-        <Router>
-          <Routes>
-            <Route path="/" element={<Homepage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/chat" element={<ChatApp />} />
-            <Route path="/profile" element={<ProfilePage />} />
-            <Route path="*" element={<NoMatch />} />
-          </Routes>
-          <div className="App">
-            {" "}
-            {/* <LoginPage></LoginPage> */}
-            {" "}
-          </div>
-        </Router>
-      </div>
-    </ApolloProvider>
-  );
+  if (Auth.loggedIn()) {
+    return (
+      <ApolloProvider client={client}>
+        <div>
+          <Router>
+            <Drawer />
+            <Homepage></Homepage>
+            <Routes>
+              <Route path="/" element={<Homepage />} />
+              <Route path="/chat" element={<ChatApp />} />
+              <Route path="/profile" element={<ProfilePage />} />
+              <Route path="*" element={<NoMatch />} />
+            </Routes>
+            <div className="App"></div>
+          </Router>
+        </div>
+      </ApolloProvider>
+    )
+  } else {
+    return (
+      <ApolloProvider client={client}>
+        <LoginPage />
+      </ApolloProvider>
+    )
+  }
 }
 
 export default App;

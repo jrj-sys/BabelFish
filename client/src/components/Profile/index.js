@@ -1,13 +1,18 @@
-import React from 'react';
-// import ReactDOM from 'react-dom/client';
-import { Card, Typography, CardMedia, CardContent } from '@mui/material';
-
+import React, { useState } from "react";
+import Auth from '../../utils/auth'
+import './Profile.css'
 
 function ProfilePage() {
+    const user = Auth.getProfile()
+    const { username, email, _id, profilePic } = user.data
+
+    console.log(profilePic)
+
+    const [userName, setname] = useState(username)
+    const [userEmail, setUserEmail] = useState(email)
+
     const uploadedImage = React.useRef(null);
     const imageUploader = React.useRef(null);
-
-    // const classes = useStyles()
 
     const handleImageUpload = e => {
         const [file] = e.target.files;
@@ -22,34 +27,35 @@ function ProfilePage() {
         }
     };
 
+
     return (
-        <Card>
-            <input
-                type='file'
-                accept='image/*'
-                onChange={handleImageUpload}
-                ref={imageUploader}
-                multiple='false'
-                style={{
-                    display: 'none'
-                }} />
-            onClick={() => imageUploader.current.click()}
-            <CardMedia
-                image={uploadedImage}
-                title="Profile image for user"
-            />
-            <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">
-                    CardMedia Example
-                </Typography>
-                <Typography variant="body2" color="textSecondary" component="p">
-                    The CardMedia component sets a background image to cover available
-                    space.
-                </Typography>
-            </CardContent>
-        </Card>
+        <div className="container">
+            <div className="card">
+                <div className='upper-container'>
+                    <div className="image-container">
+                        <img src={profilePic} alt='' height='100px' width='100px'
+                            onClick={() => imageUploader.current.click()}
+                        />
+                    </div>
+                </div>
+                <div className='lower-container'>
+                    <h3>Username: {userName}</h3>
+                    <h3>Email: {userEmail} </h3>
+                    <input
+                        type='file'
+                        accept='image/*'
+                        onChange={handleImageUpload}
+                        ref={imageUploader}
+                        multiple='false'
+                        style={{
+                            display: 'none'
+                        }}
+                    />
+                    <button>Message</button>
+                </div>
+            </div>
+        </div>
     )
 }
 
-
-export default ProfilePage;
+export default ProfilePage

@@ -24,7 +24,7 @@ import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import SettingsIcon from "@mui/icons-material/Settings";
 import NewspaperIcon from "@mui/icons-material/Newspaper";
 import LogoutIcon from "@mui/icons-material/Logout";
-import Auth from "../../utils/auth";
+import AuthService from "../../utils/auth";
 const drawerWidth = 240;
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
@@ -170,35 +170,31 @@ export default function PersistentDrawerLeft() {
             {
               text: "Account",
               icon: <AccountBoxIcon />,
-              action: "/dashboard",
+              action: "/profile",
             },
             {
               text: "Settings",
               icon: <SettingsIcon />,
               action: "/settings",
-            },
-            {
-              text: "Logout",
-              icon: <LogoutIcon />,
-<<<<<<< HEAD
-              action: (
-                <a href="/" onClick={logout}>
-                  Logout
-                </a>
-              ),
-=======
-              action: { logout },
->>>>>>> 9784029327680538a93c9ce5455fe582659b95c8
-            },
+            }
           ].map(({ text, icon, action }) => (
             <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <Link to={action} />
-                <ListItemIcon>{icon}</ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
+              <Link to={action}>
+                <ListItemButton>
+                  <ListItemIcon>{icon}</ListItemIcon>
+                  <ListItemText primary={text} />
+                </ListItemButton>
+              </Link>
             </ListItem>
           ))}
+          <ListItem key="Logout" disablePadding>
+            <Link to="/">
+              <ListItemButton onClick={() => AuthService.logout()}>
+                <ListItemIcon><LogoutIcon /></ListItemIcon>
+                <ListItemText primary="Logout" />
+              </ListItemButton>
+            </Link>
+          </ListItem>
         </List>
       </Drawer>
     </Box>
