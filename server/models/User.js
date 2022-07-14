@@ -1,24 +1,6 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
 
-// const MessageSchema = new Schema(
-//   {
-//     content: {
-//       type: String,
-//       required: true
-//     },
-//     createdAt: {
-//       type: Date,
-//       default: Date.now
-//     }
-//   },
-//   {
-//     toJSON: {
-//       virtuals: true
-//     }
-//   }
-// );
-
 const userSchema = new Schema(
   {
     username: {
@@ -54,7 +36,6 @@ const userSchema = new Schema(
         ref: 'User'
       }
     ],
-    // messages: [MessageSchema]
   },
   {
     toJSON: {

@@ -1,81 +1,74 @@
 const express = require('express');
-const path = require('path');
-// import ApolloServer
-const { ApolloServer, PubSub } = require('apollo-server-express');
-const { authMiddleware } = require('./utils/auth')
-// import typeDefs and resolvers
-const { typeDefs, resolvers } = require('./schemas')
+const cors = require('cors');
+const http = require('http');
 const db = require('./config/connection')
-const { ApolloServerPluginLandingPageGraphQLPlayground, ApolloServerPluginDrainHttpServer } = require('apollo-server-core');
-const { GraphQLWsLink } = require('@apollo/client/link/subscriptions');
-const { createServer } = require('http');
-const { makeExecutableSchema } = require('@graphql-tools/schema');
-const { WebSocketServer } = require('ws');
-const { useServer } = require ('graphql-ws/lib/use/ws')
+const { typeDefs, resolvers } = require('./schemas')
+const { Server }  = require('socket.io')
+const { ApolloServer } = require('apollo-server-express');
+const { authMiddleware } = require('./utils/auth')
+const { ApolloServerPluginLandingPageGraphQLPlayground 
+} = require('apollo-server-core');
 
+// set PORT for production PORT or 30001
 const PORT = process.env.PORT || 3001;
 
-// instance of GraphQLSchema
-const schema = makeExecutableSchema({ typeDefs, resolvers });
-
+// initiate app
 const app = express();
-const httpServer = createServer(app)
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+// cors allows special properties on io server
+app.use(cors());
+// turn app into an http server for web socket 
+const server = http.createServer(app);
+const io = new Server(server, {
+  cors: {
+    origin: 'http://localhost:3000',
+    methods: ['GET', 'POST']
+  }
+})
 
-// create a WebSocketServer to use as your subscription server
-const wsServer = new WebSocketServer({
-  // httpServer
-  server: httpServer,
-  path: '/graphql'
-});
+// io connection functions (1:1 implementation with front end)
+io.on('connection', (socket) => {
+  console.log(`User ${socket.id} connected.`);
+
+  socket.on('join_room', (room) => {
+    socket.join(room);
+    console.log(`User ${socket.id} joined Room: ${room}`)
+  })
+
+  socket.on('send_message', (data) => {
+    socket.to(data.room).emit('received_message', data)
+  })
+
+  // on disconnect
+  socket.on('disconnect', () => {
+    console.log(`User ${socket.id} disconnected.`)
+  })
+})
 
 // initiate an ApolloServer object and pass in our schema
-const server = new ApolloServer({
-  schema,
-  csrfPrevention: true,
+const GraphQLServer = new ApolloServer({
   typeDefs,
   resolvers,
   context: authMiddleware,
-  plugins: [ApolloServerPluginLandingPageGraphQLPlayground({embed: true}), 
-    ApolloServerPluginDrainHttpServer({ httpServer }), {
-      async serverWillStart() {
-        return {
-          async drainServer() {
-            await serverCleanup.dispose();
-          }
-        }
-      }
-    }],
+  plugins: [ApolloServerPluginLandingPageGraphQLPlayground({embed: true})],
   playground: true,
   cache: 'bounded'
 });
 
-// WebSocketServer listening
-const serverCleanup = useServer({ schema }, wsServer);
-
-server.installSubscriptionHandlers(httpServer);
-
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
-
-// static assets
-// if (process.env.NODE_ENV === 'production') {
-//   app.use(express.static(path.join(__dirname, '../client/public/')));
-// }
-// prod vs. dev
-
-
 const startApolloServer = async (typeDefs, resolvers) => {
-  await server.start();
-  // integrate the Apollo server with Express app as middleware
-  server.applyMiddleware({ app });
+  await GraphQLServer.start();
+  // integrate the Apollo server with Express (http) app as middleware
+  GraphQLServer.applyMiddleware({ app });
 
   db.once('open', () => {
-    httpServer.listen(PORT, () => {
+    server.listen(PORT, () => {
       console.log(`BabelFish server running on port ${PORT}`);
-      console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`)
+      console.log(`Use GraphQL at http://localhost:${PORT}${GraphQLServer.graphqlPath}`)
     })
   })
 };
 
-// async function to start the server
+// async function to start the GraphQL server
 startApolloServer(typeDefs, resolvers);
+

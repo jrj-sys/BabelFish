@@ -1,112 +1,76 @@
-import React, { useState } from 'react'
-import './style.css'
-import { Avatar, TextField } from '@mui/material'
-import { useQuery, useMutation, useSubscription } from '@apollo/client'
-import { POST_MESSAGE } from '../../utils/mutation'
-import { GET_MESSAGES } from '../../utils/queries'
-import { MESSAGES_SUBSCRIPTION } from '../../utils/subscriptions'
-import { Container, Row, Col, FormInput, Button } from 'shards-react'
+import React, { useState, useEffect } from 'react'
+import { v4 as uuidv4 } from 'uuid'
+import ScrollToBottom from 'react-scroll-to-bottom'
 
-// import avatarImgTwo from "../../assets/images/imgExamples/ed-panopio-img-2036.jpg"
+function Chat({ socket, username, room }) {
+  const [currentMessage, setCurrentMessage] = useState('');
+  const [messageList, setMessageList] = useState([]);
 
-const Messages = ({ user }) => {
-  const { data } = useQuery(GET_MESSAGES, {
-    pollInterval: 500,
-  });
-
-  if (!data) {
-    return null;
-  }
-
-  return (
-    <>
-      {data.messages.map(({ id, user: messageUser, content }) => (
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: user === messageUser ? 'flex-end' : 'flex-start',
-            paddingBottom: '1em'
-          }}
-        >
-          {user !== messageUser && (
-           <Avatar />
-          )}
-          <div
-            style={{
-              background: user === messageUser ? "#58bf56" : "#e5e6ea",
-              color: user === messageUser ? "white" : "black",
-              padding: "1em",
-              borderRadius: "1em",
-              maxWidth: "60%"
-            }}
-          >
-            {content}
-          </div>
-        </div>
-      ))}
-    </>
-  )
-}  
-
-const Chat = () => {
-  const [state, setState] = useState({
-    user: '62ce4f6a9f66a4e1fcb9c4af',
-    content: ''
-  })
-
-  const [postMessage] = useMutation(POST_MESSAGE);
-
-  const onSend = () => {
-    if (state.content.length > 0) {
-      postMessage({
-        variables: state
-      })
+  const sendMessage = async () => {
+    if (currentMessage !== '') {
+      const messageData = {
+        room: room,
+        sender: username,
+        message: currentMessage,
+        messageId: uuidv4(),
+        timestamp: new Date(Date.now()).getHours() 
+        + ":" + 
+        new Date(Date.now()).getMinutes()
+      };
+      await socket.emit('send_message', messageData);
+      setMessageList((list) => [...list, messageData]);
+      setCurrentMessage('');
     }
-    setState({
-      ...state,
-      content: '',
-    })
   }
 
+  useEffect(() => {
+    const eventListener = (data) => {
+        setMessageList((list) => [...list, data]);
+    };
+    socket.on('received_message', eventListener);
+
+    return () => socket.off('received_message', eventListener);
+  }, [socket]);
+
   return (
-    <Container>
-      <Messages user={state.user} />
-      <Row>
-        <Col xs={2} style={{ padding: 0}}>
-          <FormInput 
-            label='User'
-            value={state.user}
-            onChange={(evt) => setState({
-              ...state,
-              user: evt.target.value})}
-          />
-        </Col>
-        <Col xs={8}>
-          <FormInput 
-            label='Content'
-            value={state.content}
-            onChange={(evt) => setState({
-              ...state,
-              content: evt.target.value})
-            }
-            
-            onKeyUp={(evt) => {
-              if (evt.keyCode === 13) {
-                onSend();
-              }
-            }}
-          />
-        </Col>
-        <Col xs={2} style={{ padding: 0 }}>
-          <Button onClick={() => onSend()} style={{ width: '100%' }}>
-            Send
-          </Button>
-        </Col>
-      </Row>
-    </Container>
+    <div className="chat-window">
+      <div className="chat-header">
+        <p>Chatting as: {username}</p>
+      </div>
+      <div className="chat-body">
+        <ScrollToBottom className="message-container">
+        {messageList.map((messageContent) => {
+          return <div className="message" 
+          id={username === messageContent.sender ? 'guest' : 'host'}
+          key={messageContent.messageId}>
+            <div>
+              <div className="message-content">
+                <p>{messageContent.message}</p>
+              </div>
+              <div className="message-meta">
+                <p id="time">{messageContent.timestamp}</p>
+                <p id="author">{messageContent.sender}</p>
+              </div>
+            </div>
+          </div>
+        })}
+        </ScrollToBottom>
+      </div>
+      <div className="chat-footer">
+        <input type="text" 
+        placeholder="Send something..."
+        value={currentMessage}
+        onChange={(e) => {setCurrentMessage(e.target.value)}}
+        onKeyPress={(e) => {
+          e.key === 'Enter' && sendMessage();}}/>
+        <button onClick={sendMessage}>&#9658;</button>
+      </div>
+    </div>
   )
 }
 
 
 
-export default Chat;
+export default Chat
+
+
