@@ -160,7 +160,7 @@ export default function PersistentDrawerLeft() {
           ))}
         </List>
         <Divider />
-        <List>
+        <List className="links">
           {[
             {
               text: "Account",

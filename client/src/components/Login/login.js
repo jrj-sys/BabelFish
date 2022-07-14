@@ -3,9 +3,16 @@ import { useMutation } from "@apollo/client";
 import "./login.css";
 import { LOGIN, ADD_USER } from "../../utils/mutation";
 import Auth from "../../utils/auth";
+<<<<<<< HEAD
 import fish from "../../assets/images/babelfish.jpg";
 const LoginPage = () => {
   const [formState, setFormState] = useState({ email: "", password: "" });
+=======
+
+const LoginPage = () => {
+  const [formState, setFormState] = useState({ email: "", password: "" });
+  const [preferredLanguage, setPreferredLanguage] = useState("");
+>>>>>>> 853ad829ac03ac579b9b586245cc35b47dad9a91
   const [login, { error }] = useMutation(LOGIN);
   const [addUser] = useMutation(ADD_USER);
 
@@ -17,7 +24,7 @@ const LoginPage = () => {
         username: formState.username,
         email: formState.email,
         password: formState.password,
-        perferedLang: formState.perferedLang,
+        preferredLang: preferredLanguage,
       },
     });
     const token = mutationResponse.data.addUser.token;
@@ -26,6 +33,7 @@ const LoginPage = () => {
 
   const handleSignupChange = (event) => {
     const { name, value } = event.target;
+
     setFormState({
       ...formState,
       [name]: value,
@@ -84,14 +92,14 @@ const LoginPage = () => {
           <div class=" signup-form signup">
             <form onSubmit={handleSignupFormSubmit}>
               <label className="labels" for="cam" aria-hidden="true">
-                Sign up
+                Sign Up
               </label>
               <input
                 className="inputs"
                 type="username"
                 name="username"
                 id="username-signup"
-                placeholder="User name"
+                placeholder="Username"
                 required=""
                 onChange={handleSignupChange}
               />
@@ -113,7 +121,36 @@ const LoginPage = () => {
                 required=""
                 onChange={handleSignupChange}
               />
-              <button className="buttons">Sign up</button>
+              <label for="language-select">Choose a preferred language: </label>
+              <select
+                name="languages"
+                id="language-select"
+                value={preferredLanguage}
+                onChange={(e) => {
+                  setPreferredLanguage(e.target.value);
+                }}>
+                <option value="">--Please select an option--</option>
+                <option value="en">English</option>
+                <option value="zh">Chinese (Simplified)</option>
+                <option value="es">Spanish</option>
+                <option value="fr">French</option>
+                <option value="ar">Arabic</option>
+                <option value="ru">Russian</option>
+                <option value="hi">Hindi</option>
+                <option value="en">Bengali</option>
+                <option value="pt">Portugeuse</option>
+                <option value="ja">Japanese</option>
+                <option value="id">Indonesian</option>
+                <option value="it">Italian</option>
+                <option value="ka">German</option>
+                <option value="el">Greek</option>
+                <option value="nl">Dutch</option>
+                <option value="af">Afrikaans</option>
+              </select>
+
+              <button className="buttons" type="submit">
+                Sign Up
+              </button>
             </form>
           </div>
 

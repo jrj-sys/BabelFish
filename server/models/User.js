@@ -36,12 +36,6 @@ const userSchema = new Schema(
         ref: 'User'
       }
     ],
-    conversations: [
-      {
-        type: String,
-        ref: 'Conversation'
-      }
-    ]
   },
   {
     toJSON: {

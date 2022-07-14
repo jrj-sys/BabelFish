@@ -1,24 +1,23 @@
-const { Schema, model } = require('mongoose');
-const { Conversation } = require('./Conversation')
-const { User } = require('./User')
-
+const { Schema, model, Types } = require('mongoose');
 
 const MessageSchema = new Schema(
   {
-    conversationId: {
-      type: String,
-      ref: 'Conversation'
+    // sender that references User 
+    user: {
+      type: Schema.Types.ObjectId,
+      references: 'User',
+      required: true
     },
-    senderId: {
+    content: {
       type: String,
-      ref: 'User'
+      required: true
     },
-    messageText: {
-      type: String
+    createdAt: {
+      type: Date,
+      default: Date.now
     }
   },
   {
-    timestamps: true,
     toJSON: {
       virtuals: true
     }
