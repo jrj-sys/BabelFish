@@ -1,0 +1,66 @@
+.container{
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../../assets/images/universe.jpg');
+}
+.card {
+  width: 300px;
+  height: 420px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 5px 10px 8px rgb(41, 148, 167);
+}
+.upper-container {
+  height: 150px;
+  background: linear-gradient(to right, #ffb617, #ff1616);
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+.image-container img {
+  background-color: white;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  padding: 5px;
+  transform: translate(70px, 40px);
+}
+img {
+  border: 2px solid #8e00b9;
+}
+.lower-container {
+  margin-top: 45px;
+  height: 300px;
+  text-align: center;
+  padding-top: 10px;
+}
+.lower-container h3 {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  color: #f05901;
+  font-weight: 1000;
+  font-size: 1.5rem;
+}
+.email {
+  width: 100%;
+}
+
+.buttons {
+    width: 61%;
+    height: 41px;
+    margin: 10px auto;
+    justify-content: center;
+    display: block;
+    color: #fff;
+    background: #ad2222;
+    font-size: 1em;
+    font-weight: bold;
+    margin-top: 21px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    transition: 0.2s ease-in;
+    cursor: pointer;
+  }
