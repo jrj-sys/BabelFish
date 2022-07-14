@@ -55,7 +55,7 @@ function ProfilePage() {
               display: "none",
             }}
           />
-          <button>Message</button>
+          {/* <button>Message</button> */}
         </div>
       </div>
     </div>
