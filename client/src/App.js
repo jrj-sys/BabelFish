@@ -36,30 +36,31 @@ const client = new ApolloClient({
 });
 
 function App() {
-  // if (Auth.loggedIn()) {
-  return (
-    <ApolloProvider client={client}>
-      <div>
-        <Router>
-          <Drawer />
-          <Homepage></Homepage>
-          <Routes>
-            <Route path="/" element={<Homepage />} />
-            <Route path="/chat" element={<Message />} />
-            <Route path="/profile" element={<ProfilePage />} />
-            <Route path="*" element={<NoMatch />} />
-          </Routes>
-          <div className="App"></div>
-        </Router>
-      </div>
-    </ApolloProvider>
-    // );
-    // } else {
-    //   return (
-    //     <ApolloProvider client={client}>
-    //       <LoginPage />
-    //     </ApolloProvider>
-  );
+  if (Auth.loggedIn()) {
+    return (
+      <ApolloProvider client={client}>
+        <div>
+          <Router>
+            <Drawer />
+
+            <Routes>
+              <Route path="/" element={<Homepage />} />
+              <Route path="/chat" element={<Message />} />
+              <Route path="/profile" element={<ProfilePage />} />
+              <Route path="*" element={<NoMatch />} />
+            </Routes>
+            <div className="App"></div>
+          </Router>
+        </div>
+      </ApolloProvider>
+    );
+  } else {
+    return (
+      <ApolloProvider client={client}>
+        <LoginPage />
+      </ApolloProvider>
+    );
+  }
 }
 
 export default App;
