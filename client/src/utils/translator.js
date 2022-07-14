@@ -11,8 +11,14 @@ const translate = new Translate({
   credentials: CREDENTIALS,
   projectId: CREDENTIALS.projectId});
 
+async function listLanguages() {
+  const [languages] = await translate.getLanguages();
 
-async function translate() {
+  console.log('Languages: ');
+  languages.forEach(language => console.log(language));
+}
+
+async function translator() {
   // text will be equal to user input
   const text = 'redação';
 
@@ -27,5 +33,6 @@ async function translate() {
 
 // call the translator on load OR export
 // translator();
+listLanguages();
 
-module.exports = translate;
+module.exports = translator;
