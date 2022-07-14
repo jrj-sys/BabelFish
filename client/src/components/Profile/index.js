@@ -33,7 +33,7 @@ function ProfilePage() {
             <div className="card">
                 <div className='upper-container'>
                     <div className="image-container">
-                        <img src={profilePic} alt='' height='100px' width='100px'
+                        <img ref={uploadedImage} alt='' height='100px' width='100px'
                             onClick={() => imageUploader.current.click()}
                         />
                     </div>
