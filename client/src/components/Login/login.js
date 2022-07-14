@@ -107,8 +107,8 @@ const LoginPage = () => {
                 value={preferredLanguage}
                 onChange={(e) => {
                   setPreferredLanguage(e.target.value);
-                }}
-              >
+                }}>
+                <option value="">--Please select an option--</option>
                 <option value="en">English</option>
                 <option value="zh">Chinese (Simplified)</option>
                 <option value="es">Spanish</option>

@@ -27,7 +27,7 @@ body {
   width: 210px;
   height: 40px;
   margin: 7px;
-  border: 2px solid #43a047;
+  border: 2px solid rgb(103, 10, 15);
   border-radius: 5px;
   padding: 5px;
   font-size: 16px;
@@ -41,13 +41,13 @@ body {
   border-radius: 5px;
   padding: 5px;
   font-size: 16px;
-  background: #43a047;
+  background: rgb(103, 10, 15);
   color: #fff;
   cursor: pointer;
 }
 
 .joinChatContainer button:hover {
-  background: #2e7d32;
+  background: rgb(199, 138, 32);
 }
 
 .chat-window {
