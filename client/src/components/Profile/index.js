@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Auth from '../../utils/auth'
 import './Profile.css'
 
+
 function ProfilePage() {
     const user = Auth.getProfile()
     const { username, email, _id, profilePic } = user.data
@@ -33,14 +34,14 @@ function ProfilePage() {
             <div className="card">
                 <div className='upper-container'>
                     <div className="image-container">
-                        <img src={profilePic} alt='' height='100px' width='100px'
+                        <img ref={uploadedImage} alt='' height='100px' width='100px'
                             onClick={() => imageUploader.current.click()}
                         />
                     </div>
                 </div>
                 <div className='lower-container'>
-                    <h3>Username: {userName}</h3>
-                    <h3>Email: {userEmail} </h3>
+                    <h3>{userName}</h3>
+                    <h3>{userEmail} </h3>
                     <input
                         type='file'
                         accept='image/*'

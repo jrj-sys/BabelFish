@@ -5,7 +5,7 @@ import { POST_MESSAGE } from '../../utils/mutation'
 import { GET_MESSAGES } from '../../utils/queries'
 import { MESSAGES_SUBSCRIPTION } from '../../utils/subscriptions'
 import { Avatar, TextField } from '@mui/material'
-import { Container, Row, Col, FormInput, Button } from 'shards-react'
+// import { Container, Row, Col, FormInput, Button } from 'shards-react'
 import Chat from '../Chat'
 import './style.css'
 // SocketIO 

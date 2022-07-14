@@ -34,7 +34,6 @@
     "graphql-subscriptions": "^2.0.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.4.3",
-    "shards-react": "^1.0.3",
     "subscriptions-transport-ws": "^0.11.0"
   }
 }
