@@ -11,28 +11,18 @@ const translate = new Translate({
   credentials: CREDENTIALS,
   projectId: CREDENTIALS.projectId});
 
-async function listLanguages() {
-  const [languages] = await translate.getLanguages();
 
-  console.log('Languages: ');
-  languages.forEach(language => console.log(language));
-}
-
-async function translator() {
-  // text will be equal to user input
-  const text = 'redação';
-
-  //  target will be equal to receiving user's selected preferred language
-  const target = 'en'
-
-  // async translation 
-  const [translation] = await translate.translate(text, target);
+async function translator(text, target) {
+  // async translation ........ text = user message, target = user preferredLang
+  const translation = await translate.translate(text, target);
+  // take the 0th index because the translate API returns an object and React doesn't like that
   console.log(`Text: ${text}`);
-  console.log(`Translation: ${translation}`);
+  console.log(`Translation: ${translation[0]}`);
+
+  return translation[0];
 }
 
 // call the translator on load OR export
 // translator();
-listLanguages();
 
 module.exports = translator;

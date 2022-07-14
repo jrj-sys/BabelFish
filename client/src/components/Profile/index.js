@@ -6,8 +6,6 @@ function ProfilePage() {
     const user = Auth.getProfile()
     const { username, email, _id, profilePic } = user.data
 
-    console.log(profilePic)
-
     const [userName, setname] = useState(username)
     const [userEmail, setUserEmail] = useState(email)
 

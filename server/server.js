@@ -8,6 +8,8 @@ const { ApolloServer } = require('apollo-server-express');
 const { authMiddleware } = require('./utils/auth')
 const { ApolloServerPluginLandingPageGraphQLPlayground 
 } = require('apollo-server-core');
+const translator = require('./utils/translator');
+const { compareSync } = require('bcrypt');
 
 // set PORT for production PORT or 30001
 const PORT = process.env.PORT || 3001;
@@ -37,7 +39,14 @@ io.on('connection', (socket) => {
   })
 
   socket.on('send_message', (data) => {
-    socket.to(data.room).emit('received_message', data)
+    // translate received message from client side
+    const translatedMessage = translator(data.message, data.preferredLang).then(res => {
+      console.log(res);
+
+      const newData = {...data, message: res}
+      console.log(newData);
+      socket.to(data.room).emit('received_message', newData)
+    })
   })
 
   // on disconnect

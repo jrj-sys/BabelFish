@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from 'react'
+import Auth from '../../utils/auth'
 import { v4 as uuidv4 } from 'uuid'
 import ScrollToBottom from 'react-scroll-to-bottom'
 
-function Chat({ socket, username, room }) {
+function Chat({ socket, nickname, room }) {
+  const user = Auth.getProfile();
+  const { preferredLang } = user.data
+
   const [currentMessage, setCurrentMessage] = useState('');
   const [messageList, setMessageList] = useState([]);
 
@@ -10,8 +14,9 @@ function Chat({ socket, username, room }) {
     if (currentMessage !== '') {
       const messageData = {
         room: room,
-        sender: username,
+        sender: nickname,
         message: currentMessage,
+        preferredLang: preferredLang,
         messageId: uuidv4(),
         timestamp: new Date(Date.now()).getHours() 
         + ":" + 
@@ -35,13 +40,13 @@ function Chat({ socket, username, room }) {
   return (
     <div className="chat-window">
       <div className="chat-header">
-        <p>Chatting as: {username}</p>
+        <p>Chatting as: {nickname}</p>
       </div>
       <div className="chat-body">
         <ScrollToBottom className="message-container">
         {messageList.map((messageContent) => {
           return <div className="message" 
-          id={username === messageContent.sender ? 'guest' : 'host'}
+          id={nickname === messageContent.sender ? 'guest' : 'host'}
           key={messageContent.messageId}>
             <div>
               <div className="message-content">
