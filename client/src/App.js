@@ -11,7 +11,7 @@ import Homepage from "./components/Homepage";
 import LoginPage from "./components/Login/login";
 import Drawer from "./components/Drawer";
 import ProfilePage from "./components/Profile";
-import Message from "./components/Message";
+import ChatApp from "./components/ChatApp";
 import NoMatch from "./pages/NoMatch";
 import Auth from "./utils/auth"
 

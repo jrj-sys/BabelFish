@@ -17,7 +17,7 @@ const LoginPage = () => {
         username: formState.username,
         email: formState.email,
         password: formState.password,
-        perferedLang: formState.perferedLang,
+        preferredLang: formState.preferredLang,
       },
     });
     const token = mutationResponse.data.addUser.token;
@@ -69,7 +69,7 @@ const LoginPage = () => {
           <div class=" signup-form signup">
             <form onSubmit={handleSignupFormSubmit}>
               <label className="labels" for="cam" aria-hidden="true">
-                Sign up
+                Sign Up
               </label>
               <input
                 className="inputs"
@@ -98,7 +98,7 @@ const LoginPage = () => {
                 required=""
                 onChange={handleSignupChange}
               />
-              <button className="buttons">Sign up</button>
+              <button className="buttons" type="submit">Sign Up</button>
             </form>
           </div>
 
