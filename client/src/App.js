@@ -13,8 +13,7 @@ import Drawer from "./components/Drawer";
 import ProfilePage from "./components/Profile";
 import ChatApp from "./components/ChatApp";
 import NoMatch from "./pages/NoMatch";
-import Auth from "./utils/auth"
-
+import Auth from "./utils/auth";
 
 // const authLink = setContext((_, { headers }) => {
 //   const token = localStorage.getItem('id_token');
@@ -39,7 +38,7 @@ function App() {
         <div>
           <Router>
             <Drawer />
-            <Homepage></Homepage>
+
             <Routes>
               <Route path="/" element={<Homepage />} />
               <Route path="/chat" element={<ChatApp />} />
@@ -50,13 +49,13 @@ function App() {
           </Router>
         </div>
       </ApolloProvider>
-    )
+    );
   } else {
     return (
       <ApolloProvider client={client}>
         <LoginPage />
       </ApolloProvider>
-    )
+    );
   }
 }
 
