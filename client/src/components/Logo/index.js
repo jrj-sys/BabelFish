@@ -1,5 +1,5 @@
 import React from "react";
-import babelfishnobg from "../../assets/images/babelfishnobg";
+import babelfishnobg from "../../assets/images/babelfishnobg.png";
 
 function Logo() {
   return (
