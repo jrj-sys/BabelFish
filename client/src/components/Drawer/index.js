@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
-import { styled, useTheme } from "@mui/material/styles";
+import { styled, createTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -22,13 +22,12 @@ import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import TranslateIcon from "@mui/icons-material/Translate";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import SettingsIcon from "@mui/icons-material/Settings";
-import NewspaperIcon from "@mui/icons-material/Newspaper";
 import LogoutIcon from "@mui/icons-material/Logout";
 import AuthService from "../../utils/auth";
 const drawerWidth = 240;
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
-  ({ theme, open }) => ({
+  (theme, { open }) => ({
     flexGrow: 1,
     padding: theme.spacing(3),
     transition: theme.transitions.create("margin", {
@@ -63,7 +62,7 @@ const AppBar = styled(MuiAppBar, {
   }),
 }));
 
-const DrawerHeader = styled("div")(({ theme }) => ({
+const DrawerHeader = styled("div")((theme) => ({
   display: "flex",
   alignItems: "center",
   padding: theme.spacing(0, 1),
@@ -73,7 +72,22 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 }));
 
 export default function PersistentDrawerLeft() {
-  const theme = useTheme();
+  const theme = createTheme({
+    palette: {
+      primary: {
+        light: "#8c0e14",
+        main: "#C9141D",
+        dark: "#d3434a",
+        contrastText: "#fff",
+      },
+      secondary: {
+        light: "#af7614",
+        main: "#FAA91D",
+        dark: "#fbba4a",
+        contrastText: "#000",
+      },
+    },
+  });
   const [open, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {

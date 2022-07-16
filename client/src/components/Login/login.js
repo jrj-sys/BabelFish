@@ -3,16 +3,11 @@ import { useMutation } from "@apollo/client";
 import "./login.css";
 import { LOGIN, ADD_USER } from "../../utils/mutation";
 import Auth from "../../utils/auth";
-<<<<<<< HEAD
-import fish from "../../assets/images/babelfish.jpg";
-const LoginPage = () => {
-  const [formState, setFormState] = useState({ email: "", password: "" });
-=======
+import Logo from "../Logo";
 
 const LoginPage = () => {
   const [formState, setFormState] = useState({ email: "", password: "" });
   const [preferredLanguage, setPreferredLanguage] = useState("");
->>>>>>> 853ad829ac03ac579b9b586245cc35b47dad9a91
   const [login, { error }] = useMutation(LOGIN);
   const [addUser] = useMutation(ADD_USER);
 
@@ -64,22 +59,8 @@ const LoginPage = () => {
 
   return (
     <body>
-      <div className="fishes">
-        {" "}
-        <img className="fishPic" src={fish} alt="fish"></img>
-        <img className="fishPic" src={fish} alt="fish"></img>
-        <img className="fishPic" src={fish} alt="fish"></img>
-        <img className="fishPic" src={fish} alt="fish"></img>
-        <img className="fishPic" src={fish} alt="fish"></img>
-        <img className="fishPic" src={fish} alt="fish"></img>
-        <img className="fishPic" src={fish} alt="fish"></img>
-        <img className="fishPic" src={fish} alt="fish"></img>
-        <img className="fishPic" src={fish} alt="fish"></img>
-        <img className="fishPic" src={fish} alt="fish"></img>
-      </div>
-      <div className="title">Babel Fish</div>
-
       <div className="loginPage">
+      <Logo xs={12}/>
         <div className="Main"></div>
         <div class="main">
           <input
@@ -128,7 +109,8 @@ const LoginPage = () => {
                 value={preferredLanguage}
                 onChange={(e) => {
                   setPreferredLanguage(e.target.value);
-                }}>
+                }}
+              >
                 <option value="">--Please select an option--</option>
                 <option value="en">English</option>
                 <option value="zh">Chinese (Simplified)</option>
