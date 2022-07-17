@@ -17,6 +17,9 @@
   "name": "babelfish",
   "description": "A live instant messaging app that translates user messages into the other user's preferred language.",
   "version": "1.0.0",
+  "engines": {
+    "node": "17.8.0"
+  },
   "main": "server/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
