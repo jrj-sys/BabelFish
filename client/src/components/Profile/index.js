@@ -34,6 +34,7 @@ function ProfilePage() {
         <div className="upper-container">
           <div className="image-container">
             <img
+            className="profile-image"
               ref={uploadedImage}
               alt=""
               height="100px"

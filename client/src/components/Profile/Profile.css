@@ -27,7 +27,7 @@
   padding: 5px;
   transform: translate(70px, 40px);
 }
-img {
+.profile-image {
   border: 2px solid #8e00b9;
 }
 .lower-container {

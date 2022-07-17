@@ -3,7 +3,11 @@ import babelfishnobg from "../../assets/images/babelfishnobg.png";
 
 function Logo() {
   return (
-      <img src={babelfishnobg} alt="The babelfish logo!" />
+      <img 
+      style={{width: "350px"}}
+      src={babelfishnobg} 
+      alt="The babelfish logo!" 
+      />
   );
 }
 

@@ -1,16 +1,12 @@
 body {
   margin: 0;
   padding: 0;
-}
-.fishPic {
-  width: 175px;
-  height: 100px;
-  color: #000;
-}
-.fishes {
-  overflow: none;
-  white-space: nowrap;
-  background-color: #110e0e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: "Jost", sans-serif;
+  background: linear-gradient(to bottom, #e15763, #bcbcc1, #7b4646);
 }
 .title {
   font-size: 10vw;
@@ -22,14 +18,6 @@ body {
   display: flex;
   justify-content: center;
 }
-.loginPage {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  font-family: "Jost", sans-serif;
-  background: linear-gradient(to bottom, #e15763, #bcbcc1, #7b4646);
-}
 .main {
   width: 349px;
   height: 499px;
@@ -39,6 +27,7 @@ body {
     no-repeat center/ cover;
   border-radius: 10px;
   box-shadow: 5px 20px 70px #000;
+  align-self: center;
 }
 #cam {
   display: none;
@@ -98,9 +87,14 @@ body {
   transition: 0.8s ease-in-out;
 }
 .signup {
-  position: relative;
+  /* position: relative; */
   width: 99%;
   height: 99%;
+  padding-bottom: 25px;
+  align-items: center;
+}
+.select {
+  padding-left: 16%;
 }
 #cam:checked ~ .login label {
   transform: scale(1);
