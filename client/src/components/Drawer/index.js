@@ -22,9 +22,10 @@ import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import TranslateIcon from "@mui/icons-material/Translate";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import SettingsIcon from "@mui/icons-material/Settings";
-import NewspaperIcon from "@mui/icons-material/Newspaper";
 import LogoutIcon from "@mui/icons-material/Logout";
 import AuthService from "../../utils/auth";
+import Logo2 from "../Logo/Logo2";
+import "./style.css";
 const drawerWidth = 240;
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
@@ -84,11 +85,6 @@ export default function PersistentDrawerLeft() {
     setOpen(false);
   };
 
-  const logout = (event) => {
-    event.preventDefault();
-    AuthService.logout();
-  };
-
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -104,7 +100,7 @@ export default function PersistentDrawerLeft() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Babel Fish
+            <Logo2 />
           </Typography>
         </Toolbar>
       </AppBar>
@@ -135,23 +131,18 @@ export default function PersistentDrawerLeft() {
           {[
             {
               icon: <HomeIcon />,
-              text: "Home",
+              text: "HOME",
               action: "/",
             },
             {
               icon: <ChatBubbleOutlineIcon />,
-              text: "Start a Conversation",
+              text: "START A CONVERSATION",
               action: "/chat",
             },
             {
               icon: <TranslateIcon />,
-              text: "Make a Translation",
+              text: "MAKE A TRANSLATION",
               action: "/translate",
-            },
-            {
-              icon: <NewspaperIcon />,
-              text: "Developer News",
-              action: "/blog",
             },
           ].map(({ text, icon, action }) => (
             <ListItem disablePadding>
@@ -165,18 +156,18 @@ export default function PersistentDrawerLeft() {
           ))}
         </List>
         <Divider />
-        <List>
+        <List className="links">
           {[
             {
-              text: "Account",
+              text: "ACCOUNT",
               icon: <AccountBoxIcon />,
               action: "/profile",
             },
             {
-              text: "Settings",
+              text: "SETTINGS",
               icon: <SettingsIcon />,
               action: "/settings",
-            }
+            },
           ].map(({ text, icon, action }) => (
             <ListItem key={text} disablePadding>
               <Link to={action}>
@@ -190,8 +181,10 @@ export default function PersistentDrawerLeft() {
           <ListItem key="Logout" disablePadding>
             <Link to="/">
               <ListItemButton onClick={() => AuthService.logout()}>
-                <ListItemIcon><LogoutIcon /></ListItemIcon>
-                <ListItemText primary="Logout" />
+                <ListItemIcon>
+                  <LogoutIcon />
+                </ListItemIcon>
+                <ListItemText primary="LOGOUT" />
               </ListItemButton>
             </Link>
           </ListItem>

@@ -2,6 +2,9 @@
   "name": "babelfish-server",
   "version": "1.0.0",
   "description": "",
+  "engines": {
+    "node": "17.8.0"
+  },
   "main": "server.js",
   "scripts": {
     "start": "nodemon start",
@@ -12,6 +15,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@google-cloud/translate": "^7.0.0",
     "@graphql-tools/schema": "^8.5.0",
     "apollo-server-core": "^3.10.0",
     "apollo-server-express": "^3.9.0",
