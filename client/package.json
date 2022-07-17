@@ -7,13 +7,14 @@
     "@apollo/client": "^3.6.9",
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
+    "@fontsource/black-han-sans": "^4.5.7",
     "@graphql-tools/schema": "^8.5.0",
-    "@material-ui/core": "^4.12.4",
     "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.8.7",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
+    "@vitalets/google-translate-api": "^8.0.0",
     "apollo-server-core": "^3.10.0",
     "graphql": "^16.5.0",
     "graphql-ws": "^5.9.1",
@@ -53,5 +54,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
