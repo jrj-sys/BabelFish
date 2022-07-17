@@ -58,7 +58,7 @@ const LoginPage = () => {
   };
 
   return (
-    <body>
+    <body className="body">
       <div className="loginPage">
         <Logo />
 

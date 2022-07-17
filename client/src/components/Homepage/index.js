@@ -170,13 +170,7 @@ function Homepage() {
                 />
               </Grid>
               <Grid xs={1} align="right">
-<<<<<<< HEAD
-                <Fab color="primary" aria-label="add">
-                  <SendIcon />
-                </Fab>
-=======
                 <Fab color="primary" aria-label="add"></Fab>
->>>>>>> 853ad829ac03ac579b9b586245cc35b47dad9a91
               </Grid>
             </Grid>
           </Grid>

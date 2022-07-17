@@ -4,12 +4,12 @@ const { Translate } = require('@google-cloud/translate').v2;
 require('dotenv').config();
 
 // parse env CREDENTIALS for authorization on Translate instantiation 
-const CREDENTIALS = JSON.parse(process.env.CREDENTIALS);
+// const CREDENTIALS = JSON.parse(process.env.CREDENTIALS);
 
 // instantiate a new Translate object
-const translate = new Translate({
-  credentials: CREDENTIALS,
-  projectId: CREDENTIALS.projectId});
+// const translate = new Translate({
+//   credentials: CREDENTIALS,
+//   projectId: CREDENTIALS.projectId});
 
 
 async function translator(text, target) {

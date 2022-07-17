@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
-import { styled, createTheme } from "@mui/material/styles";
+import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -22,12 +22,15 @@ import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import TranslateIcon from "@mui/icons-material/Translate";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import SettingsIcon from "@mui/icons-material/Settings";
+import NewspaperIcon from "@mui/icons-material/Newspaper";
 import LogoutIcon from "@mui/icons-material/Logout";
 import AuthService from "../../utils/auth";
+import Logo2 from "../Logo/Logo2";
+import "./style.css";
 const drawerWidth = 240;
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
-  (theme, { open }) => ({
+  ({ theme, open }) => ({
     flexGrow: 1,
     padding: theme.spacing(3),
     transition: theme.transitions.create("margin", {
@@ -62,7 +65,7 @@ const AppBar = styled(MuiAppBar, {
   }),
 }));
 
-const DrawerHeader = styled("div")((theme) => ({
+const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   padding: theme.spacing(0, 1),
@@ -72,22 +75,7 @@ const DrawerHeader = styled("div")((theme) => ({
 }));
 
 export default function PersistentDrawerLeft() {
-  const theme = createTheme({
-    palette: {
-      primary: {
-        light: "#8c0e14",
-        main: "#C9141D",
-        dark: "#d3434a",
-        contrastText: "#fff",
-      },
-      secondary: {
-        light: "#af7614",
-        main: "#FAA91D",
-        dark: "#fbba4a",
-        contrastText: "#000",
-      },
-    },
-  });
+  const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {
@@ -96,11 +84,6 @@ export default function PersistentDrawerLeft() {
 
   const handleDrawerClose = () => {
     setOpen(false);
-  };
-
-  const logout = (event) => {
-    event.preventDefault();
-    AuthService.logout();
   };
 
   return (
@@ -118,7 +101,7 @@ export default function PersistentDrawerLeft() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Babel Fish
+            <Logo2 />
           </Typography>
         </Toolbar>
       </AppBar>
@@ -149,17 +132,17 @@ export default function PersistentDrawerLeft() {
           {[
             {
               icon: <HomeIcon />,
-              text: "Home",
+              text: "HOME",
               action: "/",
             },
             {
               icon: <ChatBubbleOutlineIcon />,
-              text: "Start a Conversation",
+              text: "START A CONVERSATION",
               action: "/chat",
             },
             {
               icon: <TranslateIcon />,
-              text: "Make a Translation",
+              text: "MAKE A TRANSLATION",
               action: "/translate",
             },
           ].map(({ text, icon, action }) => (
@@ -177,12 +160,12 @@ export default function PersistentDrawerLeft() {
         <List className="links">
           {[
             {
-              text: "Account",
+              text: "ACCOUNT",
               icon: <AccountBoxIcon />,
               action: "/profile",
             },
             {
-              text: "Settings",
+              text: "SETTINGS",
               icon: <SettingsIcon />,
               action: "/settings",
             },
@@ -202,7 +185,7 @@ export default function PersistentDrawerLeft() {
                 <ListItemIcon>
                   <LogoutIcon />
                 </ListItemIcon>
-                <ListItemText primary="Logout" />
+                <ListItemText primary="LOGOUT" />
               </ListItemButton>
             </Link>
           </ListItem>
