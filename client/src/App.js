@@ -61,13 +61,13 @@ function App() {
           <div>
             <Router>
               <Drawer />
-                <Routes>
-                  {/* <Route path="/" element={<Homepage />} /> */}
-                  <Route path="/chat" element={<ChatApp />} />
-                  <Route path="/profile" element={<ProfilePage />} />
-                  <Route path="*" element={<NoMatch />} />
-                </Routes>
-                <div className="App"></div>
+              <Routes>
+                {/* <Route path="/" element={<Homepage />} /> */}
+                <Route path="/chat" element={<ChatApp />} />
+                <Route path="/profile" element={<ProfilePage />} />
+                <Route path="*" element={<NoMatch />} />
+              </Routes>
+              <div className="App"></div>
             </Router>
           </div>
         </ApolloProvider>

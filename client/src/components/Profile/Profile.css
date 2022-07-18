@@ -11,11 +11,11 @@
   height: 420px;
   background: white;
   border-radius: 10px;
-  box-shadow: 5px 10px 8px rgb(41, 148, 167);
+  box-shadow: 5px 10px 8px #FAA91D;
 }
 .upper-container {
   height: 150px;
-  background: linear-gradient(to right, #ffb617, #ff1616);
+  background: linear-gradient(to right, #faa91d, #bd0811);
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
 }
@@ -39,7 +39,7 @@
 .lower-container h3 {
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
-  color: #f05901;
+  color: rgb(202, 21, 30);
   font-weight: 1000;
   font-size: 1.5rem;
 }
