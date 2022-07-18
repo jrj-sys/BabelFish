@@ -23,7 +23,7 @@ app.use(cors());
 
 // static assets
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../client/public/')));
+  app.use(express.static(path.join(__dirname, '../client/build')));
 }
 // turn app into an http server for web socket 
 const server = http.createServer(app);
