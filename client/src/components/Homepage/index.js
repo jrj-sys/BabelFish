@@ -48,8 +48,6 @@ function Homepage() {
 
   return (
     <div>
-      <m></m>
-
       <div>
         <Grid container>
           <Grid item xs={12}>

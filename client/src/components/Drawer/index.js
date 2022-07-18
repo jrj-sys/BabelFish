@@ -19,6 +19,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import HomeIcon from "@mui/icons-material/Home";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
+import { ClickAwayListener } from "@mui/material";
 import TranslateIcon from "@mui/icons-material/Translate";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import SettingsIcon from "@mui/icons-material/Settings";
@@ -85,7 +86,12 @@ export default function PersistentDrawerLeft() {
     setOpen(false);
   };
 
+  const handleClickAway = () => {
+    setOpen(false);
+  };
+
   return (
+    <ClickAwayListener onClickAway={handleClickAway}>
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <AppBar position="fixed" open={open}>
@@ -191,5 +197,6 @@ export default function PersistentDrawerLeft() {
         </List>
       </Drawer>
     </Box>
+    </ClickAwayListener>
   );
 }

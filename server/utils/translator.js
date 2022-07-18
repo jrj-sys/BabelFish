@@ -14,7 +14,7 @@ require('dotenv').config();
 
 async function translator(text, target) {
   // async translation ........ text = user message, target = user preferredLang
-  const translation = await translate.translate(text, target);
+  // const translation = await translate.translate(text, target);
   // take the 0th index because the translate API returns an object and React doesn't like that
   console.log(`Text: ${text}`);
   console.log(`Translation: ${translation[0]}`);
