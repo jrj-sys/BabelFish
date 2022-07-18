@@ -20,6 +20,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 // cors allows special properties on io server
 app.use(cors());
+
+// static assets
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../client/public/')));
+}
 // turn app into an http server for web socket 
 const server = http.createServer(app);
 const io = new Server(server, {
@@ -52,6 +57,8 @@ io.on('connection', (socket) => {
     console.log(`User ${socket.id} disconnected.`)
   })
 })
+
+
 
 // initiate an ApolloServer object and pass in our schema
 const GraphQLServer = new ApolloServer({
