@@ -1,4 +1,5 @@
 const express = require('express');
+const path = reqire('path');
 const cors = require('cors');
 const http = require('http');
 const db = require('./config/connection')
@@ -9,7 +10,6 @@ const { authMiddleware } = require('./utils/auth')
 const { ApolloServerPluginLandingPageGraphQLPlayground 
 } = require('apollo-server-core');
 const translator = require('./utils/translator');
-const { compareSync } = require('bcrypt');
 
 // set PORT for production PORT or 30001
 const PORT = process.env.PORT || 3001;
