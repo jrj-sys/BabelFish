@@ -3,12 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "engines": {
-    "node": "17.8.0"
+    "node": "16.14.2"
   },
   "main": "server.js",
   "scripts": {
     "start": "nodemon start",
     "watch": "nodemon",
+    
     "seed": "node config/seeds.js",
     "type": "module"
   },
