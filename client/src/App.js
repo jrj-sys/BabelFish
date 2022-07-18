@@ -49,7 +49,7 @@ const theme = createTheme({
 
 const client = new ApolloClient({
   // link: authLink.concat(httpLink),
-  uri: "http://localhost:3000/graphql",
+  uri: "https://babelfishapp.herokuapp.com/graphql",
   cache: new InMemoryCache(),
 });
 
