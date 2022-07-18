@@ -34,6 +34,7 @@ function ProfilePage() {
         <div className="upper-container">
           <div className="image-container">
             <img
+            className="profile-image"
               ref={uploadedImage}
               alt=""
               height="100px"
@@ -55,6 +56,7 @@ function ProfilePage() {
               display: "none",
             }}
           />
+          {/* <button>Message</button> */}
         </div>
       </div>
     </div>

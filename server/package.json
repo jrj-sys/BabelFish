@@ -2,6 +2,9 @@
   "name": "babelfish-server",
   "version": "1.0.0",
   "description": "",
+  "engines": {
+    "node": "17.8.0"
+  },
   "main": "server.js",
   "scripts": {
     "start": "nodemon start",

@@ -19,12 +19,14 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import HomeIcon from "@mui/icons-material/Home";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
+import { ClickAwayListener } from "@mui/material";
 import TranslateIcon from "@mui/icons-material/Translate";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import SettingsIcon from "@mui/icons-material/Settings";
-import NewspaperIcon from "@mui/icons-material/Newspaper";
 import LogoutIcon from "@mui/icons-material/Logout";
 import AuthService from "../../utils/auth";
+import Logo2 from "../Logo/Logo2";
+import "./style.css";
 const drawerWidth = 240;
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
@@ -84,12 +86,12 @@ export default function PersistentDrawerLeft() {
     setOpen(false);
   };
 
-  const logout = (event) => {
-    event.preventDefault();
-    AuthService.logout();
+  const handleClickAway = () => {
+    setOpen(false);
   };
 
   return (
+    <ClickAwayListener onClickAway={handleClickAway}>
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <AppBar position="fixed" open={open}>
@@ -104,7 +106,7 @@ export default function PersistentDrawerLeft() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Babel Fish
+            <Logo2 />
           </Typography>
         </Toolbar>
       </AppBar>
@@ -135,17 +137,17 @@ export default function PersistentDrawerLeft() {
           {[
             {
               icon: <HomeIcon />,
-              text: "Home",
+              text: "HOME",
               action: "/",
             },
             {
               icon: <ChatBubbleOutlineIcon />,
-              text: "Start a Conversation",
+              text: "START A CONVERSATION",
               action: "/chat",
             },
             {
               icon: <TranslateIcon />,
-              text: "Make a Translation",
+              text: "MAKE A TRANSLATION",
               action: "/translate",
             },
           ].map(({ text, icon, action }) => (
@@ -163,12 +165,12 @@ export default function PersistentDrawerLeft() {
         <List className="links">
           {[
             {
-              text: "Account",
+              text: "ACCOUNT",
               icon: <AccountBoxIcon />,
               action: "/profile",
             },
             {
-              text: "Settings",
+              text: "SETTINGS",
               icon: <SettingsIcon />,
               action: "/settings",
             },
@@ -188,12 +190,13 @@ export default function PersistentDrawerLeft() {
                 <ListItemIcon>
                   <LogoutIcon />
                 </ListItemIcon>
-                <ListItemText primary="Logout" />
+                <ListItemText primary="LOGOUT" />
               </ListItemButton>
             </Link>
           </ListItem>
         </List>
       </Drawer>
     </Box>
+    </ClickAwayListener>
   );
 }

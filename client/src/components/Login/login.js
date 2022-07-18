@@ -3,6 +3,7 @@ import { useMutation } from "@apollo/client";
 import "./login.css";
 import { LOGIN, ADD_USER } from "../../utils/mutation";
 import Auth from "../../utils/auth";
+import Logo from "../Logo";
 
 const LoginPage = () => {
   const [formState, setFormState] = useState({ email: "", password: "" });
@@ -57,8 +58,10 @@ const LoginPage = () => {
   };
 
   return (
-    <body>
+    <body className="body">
       <div className="loginPage">
+        <Logo />
+
         <div className="Main"></div>
         <div class="main">
           <input
@@ -68,7 +71,7 @@ const LoginPage = () => {
             aria-hidden="true"
           />
 
-          <div class=" signup-form signup">
+          <div class="signup-form signup">
             <form onSubmit={handleSignupFormSubmit}>
               <label className="labels" for="cam" aria-hidden="true">
                 Sign Up
@@ -100,32 +103,34 @@ const LoginPage = () => {
                 required=""
                 onChange={handleSignupChange}
               />
-              <select
-                name="languages"
-                id="language-select"
-                value={preferredLanguage}
-                onChange={(e) => {
-                  setPreferredLanguage(e.target.value);
-                }}>
-                <option value="">--Please select an option--</option>
-                <option value="en">English</option>
-                <option value="zh">Chinese (Simplified)</option>
-                <option value="es">Spanish</option>
-                <option value="fr">French</option>
-                <option value="ar">Arabic</option>
-                <option value="ru">Russian</option>
-                <option value="hi">Hindi</option>
-                <option value="en">Bengali</option>
-                <option value="pt">Portugeuse</option>
-                <option value="ja">Japanese</option>
-                <option value="id">Indonesian</option>
-                <option value="it">Italian</option>
-                <option value="ka">German</option>
-                <option value="el">Greek</option>
-                <option value="nl">Dutch</option>
-                <option value="af">Afrikaans</option>
-              </select>
-
+              <div className="select">
+                <select
+                  name="languages"
+                  id="language-select"
+                  value={preferredLanguage}
+                  onChange={(e) => {
+                    setPreferredLanguage(e.target.value);
+                  }}
+                >
+                  <option value="">--Please select preffered language--</option>
+                  <option value="en">English</option>
+                  <option value="zh">Chinese (Simplified)</option>
+                  <option value="es">Spanish</option>
+                  <option value="fr">French</option>
+                  <option value="ar">Arabic</option>
+                  <option value="ru">Russian</option>
+                  <option value="hi">Hindi</option>
+                  <option value="en">Bengali</option>
+                  <option value="pt">Portugeuse</option>
+                  <option value="ja">Japanese</option>
+                  <option value="id">Indonesian</option>
+                  <option value="it">Italian</option>
+                  <option value="ka">German</option>
+                  <option value="el">Greek</option>
+                  <option value="nl">Dutch</option>
+                  <option value="af">Afrikaans</option>
+                </select>
+              </div>
               <button className="buttons" type="submit">
                 Sign Up
               </button>

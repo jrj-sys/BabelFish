@@ -1,8 +1,14 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Black Han Sans", sans-serif;
+  font-family: "Black Han Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-decoration: none;
+}
+
+body a {
+  color: gray;
+  text-decoration: none;
 }
 
 code {
