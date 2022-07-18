@@ -100,7 +100,6 @@ const LoginPage = () => {
                 required=""
                 onChange={handleSignupChange}
               />
-              <label for="language-select">Choose a preferred language: </label>
               <select
                 name="languages"
                 id="language-select"

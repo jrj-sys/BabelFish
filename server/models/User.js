@@ -23,7 +23,6 @@ const userSchema = new Schema(
     preferredLang: {
       type: String,
       required: true,
-      default: 'en'
     },
     profilePic: {
       type: String,

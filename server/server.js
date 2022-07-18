@@ -41,10 +41,8 @@ io.on('connection', (socket) => {
   socket.on('send_message', (data) => {
     // translate received message from client side
     const translatedMessage = translator(data.message, data.preferredLang).then(res => {
-      console.log(res);
 
       const newData = {...data, message: res}
-      console.log(newData);
       socket.to(data.room).emit('received_message', newData)
     })
   })

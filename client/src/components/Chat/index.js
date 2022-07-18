@@ -8,6 +8,7 @@ import './style.css'
 function Chat({ socket, nickname, room }) {
   const user = Auth.getProfile();
   const { preferredLang } = user.data
+  console.log(preferredLang);
 
   const [currentMessage, setCurrentMessage] = useState('');
   const [messageList, setMessageList] = useState([]);
