@@ -112,7 +112,7 @@ const LoginPage = () => {
                     setPreferredLanguage(e.target.value);
                   }}
                 >
-                  <option value="">--Please select preffered language--</option>
+                  <option value="">--Please select your preferred language--</option>
                   <option value="en">English</option>
                   <option value="zh">Chinese (Simplified)</option>
                   <option value="es">Spanish</option>
