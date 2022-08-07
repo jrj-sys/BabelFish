@@ -11,7 +11,8 @@ import "./style.css";
 // SocketIO
 import io from "socket.io-client";
 // connect io to React
-const socket = io.connect("https://babelfishapp.herokuapp.com/");
+// const socket = io.connect("https://babelfishapp.herokuapp.com/");
+const socket = io.connect("http://localhost:3000")
 
 const ChatApp = () => {
 

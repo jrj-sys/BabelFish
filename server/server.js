@@ -11,7 +11,7 @@ const { ApolloServerPluginLandingPageGraphQLPlayground
 } = require('apollo-server-core');
 const translator = require('./utils/translator');
 
-// set PORT for production PORT or 30001
+// set PORT for production PORT or 3001
 const PORT = process.env.PORT || 3001;
 
 // initiate app
@@ -29,7 +29,9 @@ if (process.env.NODE_ENV === 'production') {
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: 'https://babelfishapp.herokuapp.com/',
+    // comment appropriate link for environment
+    // origin: 'https://babelfishapp.herokuapp.com/',
+    origin: 'https://localhost:3001',
     methods: ['GET', 'POST']
   }
 })
