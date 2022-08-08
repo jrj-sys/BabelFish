@@ -31,7 +31,7 @@ const io = new Server(server, {
   cors: {
     // comment appropriate link for environment
     // origin: 'https://babelfishapp.herokuapp.com/',
-    origin: 'https://localhost:3001',
+    origin: 'http://localhost:3001',
     methods: ['GET', 'POST']
   }
 })

@@ -1,20 +1,26 @@
-const { Schema, model, Types } = require('mongoose');
+const { Schema, model } = require('mongoose');
 
 const MessageSchema = new Schema(
   {
-    // sender that references User 
-    user: {
-      type: Schema.Types.ObjectId,
-      references: 'User',
-      required: true
+    roomId: {
+      type: String,
+      required: true,
     },
-    content: {
+    sender: {
       type: String,
       required: true
     },
-    createdAt: {
-      type: Date,
-      default: Date.now
+    message: {
+      type: String,
+      required: true,
+      trim: true
+    },
+    timestamp: {
+      type: String,
+      required: true
+    },
+    messageId: {
+      type: String
     }
   },
   {

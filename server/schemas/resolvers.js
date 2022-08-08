@@ -1,10 +1,6 @@
 const { User, Message } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
-const { PubSub } = require('graphql-subscriptions')
-
-const subscribers = [];
-const onMessagesUpdates = (fn) => subscribers.push(fn);
 
 const resolvers = {
   Query: {
@@ -28,10 +24,6 @@ const resolvers = {
     user: async (_, { username }) => {
       return User.findOne({ username })
     },
-    // get all convos
-    // conversations: async () => {
-    //   return Conversation.find({})
-    // },
     // get all messages
     messages: async (_, args) => {
       return Message.find({})
@@ -71,19 +63,8 @@ const resolvers = {
     // },
     postMessage: async (_, args) => {
       const message = await Message.create(args);
-      subscribers.forEach(fn => fn());
+      
       return message;
-    }
-  },
-  Subscription: {
-    messages: {
-      subscribe: (_, args, { pubsub }) => {
-
-        const channel = Math.random().toString(36).slice(2, 15);
-        onMessagesUpdates(() => pubsub.publish(channel, { messages }));
-        setTimeout(() => pubsub.publish(channel, { messages }), 0)
-        return pubsub.asyncIterator(channel);
-      }
     }
   }
 };

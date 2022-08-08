@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import { useMutation } from "@apollo/client";
+import { POST_MESSAGE } from "../../utils/mutation";
 import Auth from '../../utils/auth'
 import { v4 as uuidv4 } from 'uuid'
 import ScrollToBottom from 'react-scroll-to-bottom'
@@ -8,10 +10,22 @@ import './style.css'
 function Chat({ socket, nickname, room }) {
   const user = Auth.getProfile();
   const { preferredLang } = user.data
-  console.log(preferredLang);
 
   const [currentMessage, setCurrentMessage] = useState('');
   const [messageList, setMessageList] = useState([]);
+  const [postMessage, { error }] = useMutation(POST_MESSAGE);
+
+  function saveMessage(data) { 
+    postMessage({
+    variables: {
+      roomId: data.room,
+      sender: data.sender,
+      message: data.message,
+      timestamp: data.timestamp,
+      messageId: data.messageId
+      }
+    })
+  };
 
   const sendMessage = async () => {
     if (currentMessage !== '') {
@@ -26,6 +40,7 @@ function Chat({ socket, nickname, room }) {
         new Date(Date.now()).getMinutes()
       };
       await socket.emit('send_message', messageData);
+      saveMessage(messageData)
       setMessageList((list) => [...list, messageData]);
       setCurrentMessage('');
     }

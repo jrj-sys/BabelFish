@@ -26,11 +26,13 @@ export const ADD_USER = gql`
 `;
 
 export const POST_MESSAGE = gql`
-  mutation postMessage($user: String!, $content: String!) {
-    postMessage(user: $user, content: $content) {
-      id
-      user
-      content
+  mutation postMessage($roomId: String!, $sender: String!, $message: String!, $timestamp: String!, $messageId: String!) {
+    postMessage(roomId: $roomId, sender: $sender, message: $message, timestamp: $timestamp, messageId: $messageId) {
+      roomId
+      sender
+      message
+      timestamp
+      messageId
     }
   }
-`
+`;
